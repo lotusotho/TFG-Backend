@@ -2,18 +2,23 @@
   "name": "TFG-Backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "test": "node --watch src/app.js",
     "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "TFG-Backend": "file:"
+    "jsonwebtoken": "^9.0.2",
+    "TFG-Backend": "file:",
+    "winston": "^3.17.0"
   },
   "devDependencies": {
     "eslint": "8.2.0",
