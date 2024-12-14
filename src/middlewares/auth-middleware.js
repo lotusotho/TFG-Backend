@@ -1,7 +1,6 @@
-import { security } from '../config.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { jwtSecurity } from '../config.js';
+import { security, jwtSecurity } from '../config.js';
 
 export function tokenChecker(req, res, next) {
   try {

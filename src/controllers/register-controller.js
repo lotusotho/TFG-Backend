@@ -2,7 +2,9 @@ import { createUser } from '../models/methodsDB.js';
 import encryptPasswords from '../utils/bcryptEncryptor.js';
 
 export async function registerController(req, res, next) {
-  const { username, email, password, type } = req.body;
+  const {
+    username, email, password, type,
+  } = req.body;
 
   if (!username || !email || !password || !type) {
     return res.status(400).send({ error: 'All fields are required.' });
@@ -12,10 +14,10 @@ export async function registerController(req, res, next) {
     const hashedPassword = await encryptPasswords(password);
 
     const newUser = {
-      username: username,
-      email: email,
+      username,
+      email,
       password: hashedPassword,
-      type: type,
+      type,
     };
 
     createUser(newUser.username, newUser.email, newUser.password, newUser.type);

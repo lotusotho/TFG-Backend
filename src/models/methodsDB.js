@@ -22,8 +22,7 @@ export async function createUser(newUsername, newEmail, newPass, newType) {
       type: newType,
     };
 
-    const query =
-      'INSERT INTO `user`(username, email, password, type) VALUES(?, ?, ?, ?)';
+    const query = 'INSERT INTO `user`(username, email, password, type) VALUES(?, ?, ?, ?)';
     const [result] = await conxPool.execute(query, [
       newUser.username,
       newUser.email,
