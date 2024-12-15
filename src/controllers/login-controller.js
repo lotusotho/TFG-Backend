@@ -25,3 +25,13 @@ export function loginController(req, res, next) {
   error.status = 401;
   throw error;
 }
+
+export function newLoginController(req, res, next) {
+  if (!result) {
+    const error = new Error();
+    throw error;
+  }
+
+  if (bcrypt.compare(password, result[0].password)) {
+  }
+}
