@@ -1,6 +1,6 @@
-import conxPool from './createConnection.js';
-import encryptPasswords from '../utils/bcryptEncryptor.js';
-import bcrypt from 'bcrypt';
+import conxPool from './createConnection';
+import encryptPasswords from '../utils/bcryptEncryptor';
+import { User } from '../interfaces/interfaces';
 
 export async function listUsers() {
   try {
@@ -13,7 +13,7 @@ export async function listUsers() {
   }
 }
 
-export async function loginQuery(username) {
+export async function loginQuery(username: string) {
   try {
     const query = 'SELECT * from `user` WHERE username=' + username;
 
@@ -25,10 +25,15 @@ export async function loginQuery(username) {
   }
 }
 
-export async function createUser(newUsername, newEmail, newPass, newType) {
+export async function createUser(
+  newUsername: string,
+  newEmail: string,
+  newPass: string,
+  newType: number
+) {
   try {
     const hashedPassword = await encryptPasswords(newPass);
-    const newUser = {
+    const newUser: User = {
       username: newUsername,
       email: newEmail,
       password: hashedPassword,

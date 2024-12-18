@@ -1,6 +1,6 @@
-import mysql from 'mysql2/promise';
+import { createPool } from 'mysql2/promise';
 
-const conxPool = await mysql.createPool({
+const conxPool = await createPool({
   host: 'localhost',
   user: 'root',
   database: 'tfg_db',

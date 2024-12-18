@@ -1,4 +1,10 @@
-export function registrationValidation(req, res, next) {
+import { Request, Response, NextFunction } from 'express';
+
+export function registrationValidation(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   const { email } = req.body;
 
   const regex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;

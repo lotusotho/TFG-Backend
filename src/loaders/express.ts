@@ -6,14 +6,14 @@ import router from '../routes/index.js';
 
 import config from '../config.js';
 
-export default function (server) {
+export default function (server: any) {
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
 
   server.use(logDate);
   server.use(router);
 
-  server.use('*', (req, res) => {
+  server.use('*', (req: Request, res: any) => {
     res.status(404).send('Not Found');
   });
 

@@ -1,13 +1,17 @@
-import { createUser } from '../models/methodsDB.js';
+import { createUser } from '../services/methodsDB.js';
 import encryptPasswords from '../utils/bcryptEncryptor.js';
 
-export async function registerController(req, res, next) {
-  const {
-    username, email, password, type,
-  } = req.body;
+import { Request, Response, NextFunction } from 'express';
+
+export const registerController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { username, email, password, type } = req.body;
 
   if (!username || !email || !password || !type) {
-    return res.status(400).send({ error: 'All fields are required.' });
+    res.status(400).send({ error: 'All fields are required.' });
   }
 
   try {
@@ -25,4 +29,4 @@ export async function registerController(req, res, next) {
   } catch (error) {
     next(error);
   }
-}
+};
