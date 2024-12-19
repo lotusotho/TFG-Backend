@@ -1,0 +1,22 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "tsc",
+        "type": "typescript",
+        "tsconfig": "tsconfig.json",
+        "problemMatcher": ["$tsc"]
+      },
+      {
+        "label": "tsc-alias",
+        "type": "shell",
+        "command": "tsc-alias",
+        "problemMatcher": []
+      },
+      {
+        "label": "build",
+        "dependsOn": ["tsc", "tsc-alias"],
+        "problemMatcher": []
+      }
+    ]
+  }

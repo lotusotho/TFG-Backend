@@ -7,8 +7,7 @@ import { registrationValidation } from '../middlewares/register-middleware';
 
 const router = express.Router();
 
-router.get('/ping', pingController);
-// router.post('/login', loginController);
+router.post('/login', loginController);
 router.post('/register', registrationValidation, registerController);
 router.get('/secure', tokenChecker, pingController);
 router.get('/apikey', apikeyChecker, pingController);

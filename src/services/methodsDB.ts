@@ -13,9 +13,9 @@ export async function listUsers() {
   }
 }
 
-export async function loginQuery(username: string) {
+export async function loginQuery(username?: string, email?: string) {
   try {
-    const query = 'SELECT * from `user` WHERE username=' + username;
+    const query = `SELECT * FROM user WHERE username='${username}' OR email='${email}'`;
 
     const [result] = await conxPool.execute(query);
 
@@ -32,11 +32,10 @@ export async function createUser(
   newType: number
 ) {
   try {
-    const hashedPassword = await encryptPasswords(newPass);
     const newUser: User = {
       username: newUsername,
       email: newEmail,
-      password: hashedPassword,
+      password: newPass,
       type: newType,
     };
 
