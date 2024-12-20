@@ -5,12 +5,11 @@ import { security, jwtSecurity } from '../config';
 import { Request, Response, NextFunction } from 'express';
 import { HttpError } from '../classes/HttpError';
 
-// TODO: Quitar tag de bearer
 export function tokenChecker(req: any, res: Response, next: NextFunction) {
   try {
-    if (!req.headers.authorization) throw Error('Missing token');
+    if (!req.cookies.authToken) throw Error('Missing token');
 
-    const token = req.headers.authorization;
+    const token = req.cookies.authToken;
 
     if (!token) {
       throw new HttpError('Token not provided', 401);

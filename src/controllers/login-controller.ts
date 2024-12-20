@@ -55,7 +55,13 @@ export const loginController = async (
       expiresIn: jwtSecurity.expirationTime as string,
     });
 
-    return res.send({ token });
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      secure: true, // Asegúrate de que tu servidor esté usando HTTPS
+      maxAge: 24 * 60 * 60 * 1000, // 1 día
+    });
+
+    return res.status(200).send({ message: 'Login successful' });
   } catch (error) {
     return next(error);
   }
