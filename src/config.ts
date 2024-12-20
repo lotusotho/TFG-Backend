@@ -14,4 +14,11 @@ export const jwtSecurity = {
   expirationTime: process.env.EXPIRATION_TIME,
 };
 
+export const cloudflareSecurity = {
+  account_id: process.env.ACCOUNT_ID,
+  email: process.env.CLOUDFLARE_EMAIL,
+  api_key: process.env.CLOUDFLARE_API_KEY,
+  zone_id: process.env.CLOUDFLARE_ZONE_ID,
+};
+
 export default config;
