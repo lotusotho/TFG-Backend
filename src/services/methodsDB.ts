@@ -120,3 +120,21 @@ export async function saveToken(username: number, token: string) {
     throw error;
   }
 }
+
+export async function getUsernameByToken(token: string) {
+  const tokenRepository = AppDataSource.getRepository(AuthToken);
+  try {
+    const getToken = await tokenRepository.findOne({
+      where: { token: String(token) },
+      relations: ['user'],
+    });
+
+    if (!getToken) {
+      throw new HttpError('Token does not exists', 500);
+    }
+
+    return getToken.user.username;
+  } catch (error) {
+    throw error;
+  }
+}
