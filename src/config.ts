@@ -21,4 +21,8 @@ export const cloudflareSecurity = {
   zone_id: process.env.CLOUDFLARE_ZONE_ID,
 };
 
+export const developmentValues = {
+  development: process.env.DEVELOPMENT,
+};
+
 export default config;

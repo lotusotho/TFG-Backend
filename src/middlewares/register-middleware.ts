@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
-import { cloudflareSecurity } from '../config.js';
+import { cloudflareSecurity, developmentValues } from '../config';
 
 export const registrationMiddleware = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const { username, email } = req.body;
+  const { username, email, password, type } = req.body;
 
   const regex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 
@@ -15,33 +15,37 @@ export const registrationMiddleware = async (
     return res.status(500).send({ error: 'Introduce un email válido' });
   }
 
-  try {
-    const response = await axios.post(
-      `https://api.cloudflare.com/client/v4/zones/${cloudflareSecurity.zone_id}/dns_records`,
-      {
-        comment: `Subdomain created for ${username}`,
-        content: '198.51.100.4',
-        name: `${username}.mapach.es`,
-        proxied: true,
-        ttl: 3600,
-        type: 'A',
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Auth-Email': cloudflareSecurity.email as string,
-          Authorization: `Bearer ${cloudflareSecurity.api_key}`,
+  if (!developmentValues.development) {
+    try {
+      const response = await axios.post(
+        `https://api.cloudflare.com/client/v4/zones/${cloudflareSecurity.zone_id}/dns_records`,
+        {
+          comment: `Subdomain created for ${username}`,
+          content: '198.51.100.4',
+          name: `${username}.mapach.es`,
+          proxied: true,
+          ttl: 3600,
+          type: 'A',
         },
-      }
-    );
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Auth-Email': cloudflareSecurity.email as string,
+            Authorization: `Bearer ${cloudflareSecurity.api_key}`,
+          },
+        }
+      );
 
-    console.log('Cloudflare response:', response.data);
+      console.log('Cloudflare response:', response.data);
+      return next();
+    } catch (error: any) {
+      console.error(
+        'Error calling Cloudflare API:',
+        error.response?.data || error.message
+      );
+      return res.status(500).send({ error: 'Error calling Cloudflare API' });
+    }
+  } else {
     return next();
-  } catch (error: any) {
-    console.error(
-      'Error calling Cloudflare API:',
-      error.response?.data || error.message
-    );
-    return res.status(500).send({ error: 'Error calling Cloudflare API' });
   }
 };

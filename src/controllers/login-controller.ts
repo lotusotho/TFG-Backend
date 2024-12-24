@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { loginQuery } from '../services/methodsDB';
 import { jwtSecurity } from '../config';
 import { HttpError } from '../classes/HttpError';
 import { UserJWT } from '../interfaces/interfaces.js';
+import { getToken, loginQuery, saveToken } from '../services/methodsDB.js';
 
 export const loginController = async (
   req: Request,
@@ -27,10 +27,9 @@ export const loginController = async (
       return next(error);
     }
 
-    const user = result[0];
-    console.log('User found:', user);
+    console.log('User found:', result);
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, result.password);
     console.log('Password valid:', isPasswordValid);
 
     if (!isPasswordValid) {
@@ -39,10 +38,10 @@ export const loginController = async (
     }
 
     const data: UserJWT = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      type: user.type,
+      id: result.id,
+      username: result.username,
+      email: result.email,
+      type: result.type,
     };
 
     const secretKey = jwtSecurity.secretKey;
@@ -61,6 +60,8 @@ export const loginController = async (
       maxAge: 24 * 60 * 60 * 1000, // 1 día
     });
 
+    await saveToken(username, token);
+    console.log('The token is: ', await getToken(username));
     return res.status(200).send({ message: 'Login successful' });
   } catch (error) {
     return next(error);

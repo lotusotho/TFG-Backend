@@ -9,7 +9,9 @@
     "sourceMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   },
   "tsc-alias": {
     "resolveFullPaths": true,

@@ -21,7 +21,9 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.11.5",
+    "reflect-metadata": "^0.2.2",
     "TFG-Backend": "file:",
+    "typeorm": "^0.3.20",
     "winston": "^3.17.0"
   },
   "devDependencies": {

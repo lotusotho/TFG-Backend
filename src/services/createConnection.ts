@@ -1,9 +1,11 @@
-import { createPool } from 'mysql2/promise';
+import { AppDataSource } from './data-source.js';
 
-const conxPool = await createPool({
-  host: 'localhost',
-  user: 'root',
-  database: 'tfg_db',
-});
-
-export default conxPool;
+export const connectDatabase = async () => {
+  try {
+    await AppDataSource.initialize();
+    console.log('Database connected successfully');
+  } catch (error) {
+    console.error('Database connection failed', error);
+    throw error;
+  }
+};

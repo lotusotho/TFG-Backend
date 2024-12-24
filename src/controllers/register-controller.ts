@@ -17,13 +17,6 @@ export const registerController = async (
   }
 
   try {
-    const doesUserExists = (await loginQuery(username)) as Array<User>;
-    const doesEmailExists = (await loginQuery(email)) as Array<User>;
-    if (doesUserExists.length !== 0 || doesEmailExists.length !== 0) {
-      const error = new HttpError('User already exists', 400);
-      return next(error);
-    }
-
     const hashedPassword = await encryptPasswords(password);
     await createUser(username, email, hashedPassword, type);
     res.status(201).send({ message: 'A new user has been created' });
