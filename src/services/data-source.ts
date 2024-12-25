@@ -6,11 +6,11 @@ import { AuthToken } from '../models/AuthToken.js';
 
 export const AppDataSource = new DataSource({
   type: 'mysql',
-  host: 'localhost',
+  host: 'sql.freedb.tech',
   port: 3306,
-  username: 'root',
-  password: '',
-  database: 'tfg_db',
+  username: 'freedb_lotusotho',
+  password: 'pUMe749r3#uCYqh',
+  database: 'freedb_tfg_db',
   entities: [User, Post, UserType, AuthToken],
   logging: false,
 });
