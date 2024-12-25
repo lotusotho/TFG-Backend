@@ -1,7 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
-import { getUserByToken, postContent } from '../services/methodsDB.js';
+import {
+  getContent,
+  getUserByToken,
+  postContent,
+} from '../services/methodsDB.js';
 
-export const contentContoller = async (
+export const postContentController = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -14,5 +18,21 @@ export const contentContoller = async (
 
   res.status(201).send({
     message: 'The content has been posted.',
+  });
+};
+
+export const getContentController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const token = req.cookies.authToken;
+
+  const currentUser = await getUserByToken(token);
+
+  const content = await getContent(currentUser.ID);
+
+  res.status(200).send({
+    content,
   });
 };

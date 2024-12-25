@@ -158,3 +158,16 @@ export async function postContent(userId: number, content: string) {
     throw error;
   }
 }
+
+export async function getContent(userId: number) {
+  const postRepository = AppDataSource.getRepository(Post);
+  try {
+    const getPost = await postRepository.findOne({
+      where: { ID: Number(userId) },
+    });
+
+    return getPost;
+  } catch (error) {
+    throw error;
+  }
+}
