@@ -5,7 +5,8 @@
   "main": "src/app.ts",
   "type": "module",
   "scripts": {
-    "compile": "tsc && tsc-alias && node dist/app.js",
+    "compile": "tsc && tsc-alias",
+    "exe": "node dist/app.js",
     "dev": "nodemon -e ts  --exec \"pnpm run compile\"",
     "lint": "eslint ."
   },
