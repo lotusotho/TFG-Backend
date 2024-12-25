@@ -171,3 +171,17 @@ export async function getContent(userId: number) {
     throw error;
   }
 }
+
+export async function getUserBySubdomain(
+  subdomain: string
+): Promise<User | null> {
+  const userRepository = AppDataSource.getRepository(User);
+  try {
+    const user = await userRepository.findOne({
+      where: { username: subdomain },
+    });
+    return user;
+  } catch (error) {
+    throw error;
+  }
+}

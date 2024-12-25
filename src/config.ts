@@ -22,7 +22,7 @@ export const cloudflareSecurity = {
 };
 
 export const developmentValues = {
-  development: process.env.DEVELOPMENT,
+  development: process.env.DEVELOPMENT === 'true',
 };
 
 export default config;
