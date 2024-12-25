@@ -121,7 +121,7 @@ export async function saveToken(username: number, token: string) {
   }
 }
 
-export async function getUsernameByToken(token: string) {
+export async function getUserByToken(token: string) {
   const tokenRepository = AppDataSource.getRepository(AuthToken);
   try {
     const getToken = await tokenRepository.findOne({
@@ -133,7 +133,27 @@ export async function getUsernameByToken(token: string) {
       throw new HttpError('Token does not exists', 500);
     }
 
-    return getToken.user.username;
+    return getToken.user;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function postContent(userId: number, content: string) {
+  const postRepository = AppDataSource.getRepository(Post);
+  try {
+    const getPost = await postRepository.findOne({
+      where: { ID: Number(userId) },
+    });
+
+    const newPost = postRepository.create({
+      ID: Number(userId),
+      text_content: String(JSON.stringify(content)),
+    });
+
+    await postRepository.save(newPost);
+
+    return getPost;
   } catch (error) {
     throw error;
   }

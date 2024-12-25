@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getUsernameByToken } from '../services/methodsDB.js';
+import { getUserByToken } from '../services/methodsDB.js';
 
 export const tokenUsernameController = async (
   req: Request,
@@ -8,7 +8,7 @@ export const tokenUsernameController = async (
 ): Promise<any> => {
   const token = req.cookies.authToken;
 
-  const username = await getUsernameByToken(token);
+  const user = await getUserByToken(token);
 
-  return res.status(200).send({ username });
+  return res.status(200).send({ username: user.username });
 };
