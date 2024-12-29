@@ -69,3 +69,14 @@ export const loginController = async (
     return next(error);
   }
 };
+
+export const isLoggedController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const isLogged: Boolean =
+    req.cookies.authToken !== undefined && req.cookies.authToken !== null; // TODO cambiar api call por cookie
+
+  return res.status(200).send({ message: isLogged });
+};
