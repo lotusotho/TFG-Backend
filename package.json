@@ -6,8 +6,9 @@
   "type": "module",
   "scripts": {
     "compile": "tsc && tsc-alias",
+    "compileDev": "tsc && tsc-alias && node dist/app.js",
     "exe": "node dist/app.js",
-    "dev": "nodemon -e ts  --exec \"pnpm run compile\"",
+    "dev": "nodemon -e ts  --exec \"pnpm run compileDev\"",
     "lint": "eslint ."
   },
   "keywords": [],
@@ -21,7 +22,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.11.5",
+    "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
     "TFG-Backend": "file:",
     "typeorm": "^0.3.20",

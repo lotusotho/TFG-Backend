@@ -1,10 +1,15 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
+import { Userdata } from './Userdata.js';
 
-@Entity('user_type')
-export class UserType {
-  @PrimaryColumn({ type: 'tinyint', unsigned: true })
-  id!: number;
+@Entity({ name: 'usertype' })
+export class Usertype {
+  @PrimaryColumn()
+  ID!: number;
 
-  @Column({ type: 'varchar', length: 7, default: '' })
+  @Column({ type: 'varchar', length: 7 })
   name!: string;
+
+  @ManyToOne(() => Userdata, (user) => user.type)
+  @JoinColumn({ name: 'ID' }) // Specify the foreign key column
+  users!: Userdata[];
 }

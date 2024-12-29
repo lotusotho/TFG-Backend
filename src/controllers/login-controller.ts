@@ -55,6 +55,8 @@ export const loginController = async (
     });
 
     res.cookie('authToken', token, {
+      domain: 'localhost',
+      path: '/',
       httpOnly: true,
       secure: true, // Asegúrate de que tu servidor esté usando HTTPS
       maxAge: 24 * 60 * 60 * 1000, // 1 día

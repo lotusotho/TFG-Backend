@@ -1,15 +1,16 @@
-import { User } from '../models/User.js';
-import { Post } from '../models/Post.js';
 import { AppDataSource } from './data-source.js';
-import { AuthToken } from '../models/AuthToken.js';
+import { AuthToken } from '../models/Authtoken.js';
 import { HttpError } from '../classes/HttpError.js';
+import { Userdata } from '../models/Userdata.js';
+import { Postdata } from '../models/Postdata.js';
+import { Usertype } from '../models/Usertype.js';
 
 export const loginQuery = async (
   username?: string,
   email?: string
-): Promise<User | null> => {
+): Promise<Userdata | null> => {
   try {
-    const userRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(Userdata);
     const user = await userRepository.findOne({
       where: [{ username }, { email }],
     });
@@ -26,8 +27,16 @@ export async function createUser(
   newType: number
 ) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
-    const postRepository = AppDataSource.getRepository(Post);
+    const userRepository = AppDataSource.getRepository(Userdata);
+    const userTypeRepository = AppDataSource.getRepository(Usertype); // Repositorio para UserType
+
+    // Verifica si el tipo de usuario existe
+    const userType = await userTypeRepository.findOne({
+      where: { ID: Number(newType) },
+    });
+    if (!userType) {
+      throw new Error('User type does not exist');
+    }
 
     // Verifica si el usuario ya existe
     const existingUser = await userRepository.findOne({
@@ -38,32 +47,25 @@ export async function createUser(
       throw new Error('User already exists');
     }
 
-    // Crea un nuevo usuario
+    // Crea el nuevo usuario
     const newUser = userRepository.create({
       username: newUsername,
       email: newEmail,
       password: newPass,
-      type: newType,
+      type: newType, // Asegúrate de asignar el tipo de usuario existente
     });
     await userRepository.save(newUser);
 
-    // Crea un nuevo post asociado con el usuario
-    const newPost = postRepository.create({
-      text_content: '',
-      user: newUser,
-    });
-    await postRepository.save(newPost);
-
-    console.log('User and associated post saved');
     return newUser;
   } catch (error) {
-    throw error;
+    console.error('Error during user creation:', error);
+    throw new Error('Error during user creation');
   }
 }
 
 export async function getToken(username: string) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(Userdata);
     const tokenRepository = AppDataSource.getRepository(AuthToken);
 
     const getUser = await userRepository.findOne({
@@ -90,7 +92,7 @@ export async function getToken(username: string) {
 
 export async function saveToken(username: number, token: string) {
   try {
-    const userRepository = AppDataSource.getRepository(User);
+    const userRepository = AppDataSource.getRepository(Userdata);
     const tokenRepository = AppDataSource.getRepository(AuthToken);
 
     const getUser = await userRepository.findOne({
@@ -109,13 +111,13 @@ export async function saveToken(username: number, token: string) {
       throw new HttpError('Token already exists', 500);
     }
 
-    const newToken = tokenRepository.create({
+    const newToken: AuthToken = tokenRepository.create({
       ID: getUser.ID,
       token: token,
     });
     await tokenRepository.save(newToken);
 
-    return getToken;
+    return newToken;
   } catch (error) {
     throw error;
   }
@@ -140,7 +142,7 @@ export async function getUserByToken(token: string) {
 }
 
 export async function postContent(userId: number, content: string) {
-  const postRepository = AppDataSource.getRepository(Post);
+  const postRepository = AppDataSource.getRepository(Postdata);
   try {
     const getPost = await postRepository.findOne({
       where: { ID: Number(userId) },
@@ -148,7 +150,7 @@ export async function postContent(userId: number, content: string) {
 
     const newPost = postRepository.create({
       ID: Number(userId),
-      text_content: String(JSON.stringify(content)),
+      text_content: content,
     });
 
     await postRepository.save(newPost);
@@ -160,7 +162,7 @@ export async function postContent(userId: number, content: string) {
 }
 
 export async function getContent(userId: number) {
-  const postRepository = AppDataSource.getRepository(Post);
+  const postRepository = AppDataSource.getRepository(Postdata);
   try {
     const getPost = await postRepository.findOne({
       where: { ID: Number(userId) },
@@ -174,8 +176,8 @@ export async function getContent(userId: number) {
 
 export async function getUserBySubdomain(
   subdomain: string
-): Promise<User | null> {
-  const userRepository = AppDataSource.getRepository(User);
+): Promise<Userdata | null> {
+  const userRepository = AppDataSource.getRepository(Userdata);
   try {
     const user = await userRepository.findOne({
       where: { username: subdomain },

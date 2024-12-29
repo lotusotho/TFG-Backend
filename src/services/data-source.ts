@@ -1,17 +1,19 @@
 import { DataSource } from 'typeorm';
-import { User } from '../models/User.js';
-import { Post } from '../models/Post.js';
-import { UserType } from '../models/Usertype.js';
-import { AuthToken } from '../models/AuthToken.js';
+import { Userdata } from '../models/Userdata.js';
+import { Postdata } from '../models/Postdata.js';
+import { Usertype } from '../models/Usertype.js';
+import { AuthToken } from '../models/Authtoken.js';
 import { dbConfig } from '../config.js';
 
 export const AppDataSource = new DataSource({
-  type: 'mysql',
+  type: 'postgres',
   host: dbConfig.host,
   port: dbConfig.port,
   username: dbConfig.username,
   password: dbConfig.password,
   database: dbConfig.database,
-  entities: [User, Post, UserType, AuthToken],
+  schema: dbConfig.schema,
+  entities: [Userdata, Postdata, Usertype, AuthToken],
   logging: false,
+  synchronize: false,
 });
