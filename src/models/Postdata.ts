@@ -9,6 +9,9 @@ export class Postdata {
   @Column({ type: 'json', nullable: true })
   text_content?: any;
 
+  @Column({ type: 'json', nullable: true })
+  md_content?: any;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date_creation!: Date;
 
@@ -16,6 +19,6 @@ export class Postdata {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
   })
-  @JoinColumn({ name: 'ID' }) // Añadir JoinColumn aquí
+  @JoinColumn({ name: 'ID' })
   user!: Userdata;
 }

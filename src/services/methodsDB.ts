@@ -141,16 +141,21 @@ export async function getUserByToken(token: string) {
   }
 }
 
-export async function postContent(userId: number, content: string) {
+export async function postContent(
+  userId: number,
+  json_c: string,
+  markdown_c: string
+) {
   const postRepository = AppDataSource.getRepository(Postdata);
   try {
     const getPost = await postRepository.findOne({
       where: { ID: Number(userId) },
     });
 
-    const newPost = postRepository.create({
+    const newPost: Postdata = postRepository.create({
       ID: Number(userId),
-      text_content: content,
+      text_content: json_c,
+      md_content: markdown_c,
     });
 
     await postRepository.save(newPost);

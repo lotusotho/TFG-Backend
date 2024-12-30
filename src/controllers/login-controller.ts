@@ -57,9 +57,9 @@ export const loginController = async (
     res.cookie('authToken', token, {
       domain: 'localhost',
       path: '/',
-      httpOnly: true,
-      secure: true, // Asegúrate de que tu servidor esté usando HTTPS
-      maxAge: 24 * 60 * 60 * 1000, // 1 día
+      httpOnly: false,
+      secure: false,
+      maxAge: 3600 * 1000, // 1 hora
     });
 
     await saveToken(username, token);
@@ -68,15 +68,4 @@ export const loginController = async (
   } catch (error) {
     return next(error);
   }
-};
-
-export const isLoggedController = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<any> => {
-  const isLogged: Boolean =
-    req.cookies.authToken !== undefined && req.cookies.authToken !== null; // TODO cambiar api call por cookie
-
-  return res.status(200).send({ message: isLogged });
 };
