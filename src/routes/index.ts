@@ -11,6 +11,7 @@ import {
 } from '../controllers/content-controller.js';
 import { subdomainMiddleware } from '../middlewares/subdomain-middleware.js';
 import { userPageController } from '../controllers/userpage-controller.js';
+import { logoutController } from '../controllers/logout-controller.js';
 
 const router = express.Router();
 
@@ -23,5 +24,6 @@ router.get('/secure', tokenChecker, pingController);
 router.get('/apikey', apikeyChecker, pingController);
 router.get('/tokenusername', tokenChecker, tokenUsernameController);
 router.get('/usercontent', tokenChecker, getContentController);
+router.get('/logout', logoutController);
 
 export default router;

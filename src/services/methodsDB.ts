@@ -123,6 +123,26 @@ export async function saveToken(username: number, token: string) {
   }
 }
 
+export async function deleteToken(token: string) {
+  try {
+    const tokenRepository = AppDataSource.getRepository(AuthToken);
+
+    const getToken = await tokenRepository.findOne({
+      where: [{ token }],
+    });
+
+    if (!getToken) {
+      throw new HttpError('Token doesnt exists', 500);
+    }
+
+    await tokenRepository.delete(getToken!);
+
+    return 'Token has been deleted';
+  } catch (error) {
+    throw error;
+  }
+}
+
 export async function getUserByToken(token: string) {
   const tokenRepository = AppDataSource.getRepository(AuthToken);
   try {
