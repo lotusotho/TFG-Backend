@@ -16,4 +16,5 @@ export const AppDataSource = new DataSource({
   entities: [Userdata, Postdata, Usertype, AuthToken],
   logging: false,
   synchronize: false,
+  ssl: true,
 });
