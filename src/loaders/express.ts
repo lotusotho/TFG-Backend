@@ -4,13 +4,18 @@ import { logDate } from '../middlewares/logger-middleware';
 import errorHandler from '../middlewares/error-handler';
 import router from '../routes/index';
 
-import config from '../config.js';
+import config from '../config';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
 
 export default async function (server: any) {
-  server.use(cors());
+  server.use(
+    cors({
+      origin: 'https://tfg-frontend.vercel.app',
+      credentials: true,
+    })
+  );
 
   server.use(cookieParser());
 
