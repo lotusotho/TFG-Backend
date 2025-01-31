@@ -10,12 +10,7 @@ import cors from 'cors';
 import { connectDatabase } from '../services/createConnection.js';
 
 export default async function (server: any) {
-  server.use(
-    cors({
-      origin: 'http://localhost:4200',
-      credentials: true,
-    })
-  );
+  server.use(cors());
 
   server.use(cookieParser());
 
