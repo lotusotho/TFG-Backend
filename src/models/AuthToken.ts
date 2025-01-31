@@ -2,7 +2,7 @@ import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
 import { Userdata } from './Userdata';
 
 @Entity({ name: 'authtoken' })
-export class AuthToken {
+export class Authtoken {
   @PrimaryColumn()
   ID!: number;
 

@@ -1,5 +1,5 @@
 import { AppDataSource } from './data-source';
-import { AuthToken } from '../models/Authtoken';
+import { Authtoken } from '../models/Authtoken';
 import { HttpError } from '../classes/HttpError';
 import { Userdata } from '../models/Userdata';
 import { Postdata } from '../models/Postdata';
@@ -66,7 +66,7 @@ export async function createUser(
 export async function getToken(username: string) {
   try {
     const userRepository = AppDataSource.getRepository(Userdata);
-    const tokenRepository = AppDataSource.getRepository(AuthToken);
+    const tokenRepository = AppDataSource.getRepository(Authtoken);
 
     const getUser = await userRepository.findOne({
       where: [{ username: String(username) }],
@@ -93,7 +93,7 @@ export async function getToken(username: string) {
 export async function saveToken(username: number, token: string) {
   try {
     const userRepository = AppDataSource.getRepository(Userdata);
-    const tokenRepository = AppDataSource.getRepository(AuthToken);
+    const tokenRepository = AppDataSource.getRepository(Authtoken);
 
     const getUser = await userRepository.findOne({
       where: [{ username: String(username) }],
@@ -111,7 +111,7 @@ export async function saveToken(username: number, token: string) {
       throw new HttpError('Token already exists', 500);
     }
 
-    const newToken: AuthToken = tokenRepository.create({
+    const newToken: Authtoken = tokenRepository.create({
       ID: getUser.ID,
       token: token,
     });
@@ -125,7 +125,7 @@ export async function saveToken(username: number, token: string) {
 
 export async function deleteToken(token: string) {
   try {
-    const tokenRepository = AppDataSource.getRepository(AuthToken);
+    const tokenRepository = AppDataSource.getRepository(Authtoken);
 
     const getToken = await tokenRepository.findOne({
       where: [{ token }],
@@ -144,7 +144,7 @@ export async function deleteToken(token: string) {
 }
 
 export async function getUserByToken(token: string) {
-  const tokenRepository = AppDataSource.getRepository(AuthToken);
+  const tokenRepository = AppDataSource.getRepository(Authtoken);
   try {
     const getToken = await tokenRepository.findOne({
       where: { token: String(token) },
