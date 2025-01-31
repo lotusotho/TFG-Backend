@@ -1,5 +1,5 @@
 import { Entity, Column, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
-import { Usertype } from './Usertype.js';
+import { Usertype } from './Usertype';
 
 @Entity({ name: 'userdata' })
 export class Userdata {

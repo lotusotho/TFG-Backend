@@ -4,14 +4,14 @@ import { loginController } from '../controllers/login-controller';
 import { apikeyChecker, tokenChecker } from '../middlewares/auth-middleware';
 import { registerController } from '../controllers/register-controller';
 import { registrationMiddleware } from '../middlewares/register-middleware';
-import { tokenUsernameController } from '../controllers/token-controller.js';
+import { tokenUsernameController } from '../controllers/token-controller';
 import {
   getContentController,
   postContentController,
-} from '../controllers/content-controller.js';
-import { subdomainMiddleware } from '../middlewares/subdomain-middleware.js';
-import { userPageController } from '../controllers/userpage-controller.js';
-import { logoutController } from '../controllers/logout-controller.js';
+} from '../controllers/content-controller';
+import { subdomainMiddleware } from '../middlewares/subdomain-middleware';
+import { userPageController } from '../controllers/userpage-controller';
+import { logoutController } from '../controllers/logout-controller';
 
 const router = express.Router();
 

@@ -3,8 +3,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { jwtSecurity } from '../config';
 import { HttpError } from '../classes/HttpError';
-import { UserJWT } from '../interfaces/interfaces.js';
-import { getToken, loginQuery, saveToken } from '../services/methodsDB.js';
+import { UserJWT } from '../interfaces/interfaces';
+import { getToken, loginQuery, saveToken } from '../services/methodsDB';
 
 export const loginController = async (
   req: Request,
