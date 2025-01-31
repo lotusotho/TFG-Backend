@@ -9,7 +9,8 @@
     "compileDev": "tsc && tsc-alias && node dist/app.js",
     "exe": "node dist/app.js",
     "dev": "nodemon -e ts  --exec \"pnpm run compileDev\"",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "start:docker": "docker-compose --env-file ./.env -f docker/docker-compose.yml up"
   },
   "keywords": [],
   "author": "",
