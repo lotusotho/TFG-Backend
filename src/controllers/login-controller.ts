@@ -55,10 +55,10 @@ export const loginController = async (
     } as jwt.SignOptions);
 
     res.cookie('authToken', token, {
-      domain: 'blog.mapach.es',
+      domain: '.mapach.es',
       path: '/',
       httpOnly: false,
-      secure: false,
+      secure: true,
       maxAge: 3600 * 1000, // 1 hora
     });
 
