@@ -12,7 +12,7 @@ import { connectDatabase } from '../services/createConnection';
 export default async function (server: any) {
   server.use(
     cors({
-      origin: 'https://tfg-frontend-three.vercel.app',
+      origin: 'https://blog.mapach.es',
       credentials: true,
     })
   );
