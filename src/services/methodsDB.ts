@@ -1,9 +1,9 @@
-import { AppDataSource } from './data-source';
-import { Authtoken } from '../models/Authtoken';
-import { HttpError } from '../classes/HttpError';
-import { Userdata } from '../models/Userdata';
-import { Postdata } from '../models/Postdata';
-import { Usertype } from '../models/Usertype';
+import { AppDataSource } from './data-source.js';
+import { Authtoken } from '../models/Authtoken.js';
+import { HttpError } from '../classes/HttpError.js';
+import { Userdata } from '../models/Userdata.js';
+import { Postdata } from '../models/Postdata.js';
+import { Usertype } from '../models/Usertype.js';
 
 export const loginQuery = async (
   username?: string,

@@ -13,7 +13,7 @@
     "experimentalDecorators": true
   },
   "tsc-alias": {
-    "resolveFullPaths": true,
+    "resolveFullPaths": false,
     "verbose": false
   },
   "include": ["src/**/*.ts"],

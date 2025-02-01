@@ -1,9 +1,9 @@
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { security, jwtSecurity } from '../config';
+import { security, jwtSecurity } from '../config.js';
 
 import { Request, Response, NextFunction } from 'express';
-import { HttpError } from '../classes/HttpError';
+import { HttpError } from '../classes/HttpError.js';
 
 export function tokenChecker(req: any, res: Response, next: NextFunction) {
   try {

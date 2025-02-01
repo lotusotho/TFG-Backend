@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { deleteToken } from '../services/methodsDB';
+import { deleteToken } from '../services/methodsDB.js';
 
 export const logoutController = async (
   req: Request,

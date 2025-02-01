@@ -1,5 +1,9 @@
 import { NextFunction, Request, Response } from 'express';
-import { getContent, getUserByToken, postContent } from '../services/methodsDB';
+import {
+  getContent,
+  getUserByToken,
+  postContent,
+} from '../services/methodsDB.js';
 
 export const postContentController = async (
   req: Request,

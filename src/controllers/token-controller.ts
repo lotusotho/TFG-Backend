@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { getUserByToken } from '../services/methodsDB';
+import { getUserByToken } from '../services/methodsDB.js';
 
 export const tokenUsernameController = async (
   req: Request,

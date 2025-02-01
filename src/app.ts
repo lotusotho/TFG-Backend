@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import loaders from './loaders/index';
+import loaders from './loaders/index.js';
 
 const app = express();
 

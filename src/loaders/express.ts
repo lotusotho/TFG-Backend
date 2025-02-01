@@ -1,13 +1,13 @@
 import express from 'express';
 
-import { logDate } from '../middlewares/logger-middleware';
-import errorHandler from '../middlewares/error-handler';
-import router from '../routes/index';
+import { logDate } from '../middlewares/logger-middleware.js';
+import errorHandler from '../middlewares/error-handler.js';
+import router from '../routes/index.js';
 
-import config from '../config';
+import config from '../config.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import { connectDatabase } from '../services/createConnection';
+import { connectDatabase } from '../services/createConnection.js';
 
 export default async function (server: any) {
   server.use(
