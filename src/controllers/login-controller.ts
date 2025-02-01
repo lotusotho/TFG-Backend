@@ -55,7 +55,7 @@ export const loginController = async (
     } as jwt.SignOptions);
 
     res.cookie('authToken', token, {
-      domain: 'https://blog.mapach.es',
+      domain: 'blog.mapach.es',
       path: '/',
       httpOnly: false,
       secure: false,
