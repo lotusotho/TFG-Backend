@@ -51,8 +51,8 @@ export const loginController = async (
     }
 
     const token = jwt.sign(data, secretKey, {
-      expiresIn: jwtSecurity.expirationTime as string,
-    });
+      expiresIn: jwtSecurity.expirationTime,
+    } as jwt.SignOptions);
 
     res.cookie('authToken', token, {
       domain: 'localhost',

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "clean": "rm -rf dist",
-    "compile": "pnpm clean && pnpm tsc",
+    "compile": "pnpm clean && pnpm tsc && pnpm tsc-alias",
     "compileDev": "pnpm tsc && pnpm tsc-alias && node dist/app.js",
     "exe": "node dist/app.js",
     "dev": "pnpm nodemon -e ts  --exec \"pnpm run compileDev\"",

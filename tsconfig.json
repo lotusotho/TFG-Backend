@@ -6,7 +6,6 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
-    "sourceMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
@@ -14,7 +13,7 @@
   },
   "tsc-alias": {
     "resolveFullPaths": false,
-    "verbose": false
+    "verbose": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
