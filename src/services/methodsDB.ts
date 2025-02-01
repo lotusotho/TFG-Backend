@@ -1,9 +1,9 @@
 import { AppDataSource } from './data-source';
-import { Authtoken } from '../models/Authtoken';
 import { HttpError } from '../classes/HttpError';
 import { Userdata } from '../models/Userdata';
 import { Postdata } from '../models/Postdata';
 import { Usertype } from '../models/Usertype';
+import { Authtoken } from '../models/Authtoken';
 
 export const loginQuery = async (
   username?: string,
