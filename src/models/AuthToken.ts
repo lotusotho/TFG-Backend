@@ -1,5 +1,5 @@
 import { Entity, Column, ManyToOne, JoinColumn, PrimaryColumn } from 'typeorm';
-import { Userdata } from './Userdata.js';
+import { Userdata } from './Userdata';
 
 @Entity({ name: 'authtoken' })
 export class Authtoken {

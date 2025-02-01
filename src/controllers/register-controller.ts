@@ -1,7 +1,7 @@
-import { HttpError } from '../classes/HttpError.js';
-import { User } from '../interfaces/interfaces.js';
-import { createUser, loginQuery } from '../services/methodsDB.js';
-import encryptPasswords from '../utils/bcryptEncryptor.js';
+import { HttpError } from '../classes/HttpError';
+import { User } from '../interfaces/interfaces';
+import { createUser, loginQuery } from '../services/methodsDB';
+import encryptPasswords from '../utils/bcryptEncryptor';
 
 import { Request, Response, NextFunction } from 'express';
 

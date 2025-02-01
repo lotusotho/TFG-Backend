@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { getUserBySubdomain } from '../services/methodsDB.js';
+import { getUserBySubdomain } from '../services/methodsDB';
 
 export const subdomainMiddleware = async (
   req: any,
