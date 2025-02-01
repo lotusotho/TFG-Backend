@@ -8,11 +8,12 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true
   },
   "tsc-alias": {
-    "resolveFullPaths": false,
+    "resolveFullPaths": true,
     "resolveFullExtension": ".js",
     "verbose": true
   },
