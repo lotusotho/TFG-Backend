@@ -12,7 +12,9 @@ import { connectDatabase } from '../services/createConnection';
 export default async function (server: any) {
   server.use(
     cors({
-      origin: 'https://tfg-frontend.vercel.app',
+      origin: '*',
+      methods: '*',
+      allowedHeaders: ['Content-Type', 'Authorization'],
       credentials: true,
     })
   );
