@@ -5,10 +5,10 @@
   "main": "src/app.ts",
   "type": "module",
   "scripts": {
-    "compile": "tsc && tsc-alias",
-    "compileDev": "tsc && tsc-alias && node dist/app.js",
+    "compile": "pnpm tsc && pnpm tsc-alias",
+    "compileDev": "pnpm tsc && pnpm tsc-alias && node dist/app.js",
     "exe": "node dist/app.js",
-    "dev": "nodemon -e ts  --exec \"pnpm run compileDev\"",
+    "dev": "pnpm nodemon -e ts  --exec \"pnpm run compileDev\"",
     "lint": "eslint .",
     "start:docker": "docker-compose --env-file ./.env -f docker/docker-compose.yml up"
   },
