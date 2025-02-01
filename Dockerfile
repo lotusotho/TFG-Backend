@@ -13,8 +13,6 @@ RUN pnpm install
 
 COPY . .
 
-RUN pnpm add -D typescript tsc-alias
-
 RUN pnpm run compile
 
 EXPOSE 3000
