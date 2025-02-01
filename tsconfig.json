@@ -9,7 +9,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "tsc-alias": {
     "resolveFullPaths": false,

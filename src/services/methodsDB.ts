@@ -1,5 +1,5 @@
 import { AppDataSource } from './data-source.js';
-import { Authtoken } from '../models/Authtoken.js';
+import { Authtoken } from '../models/Authtoken.ts';
 import { HttpError } from '../classes/HttpError.js';
 import { Userdata } from '../models/Userdata.js';
 import { Postdata } from '../models/Postdata.js';
