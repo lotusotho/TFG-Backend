@@ -2,7 +2,7 @@ import { DataSource } from 'typeorm';
 import { Userdata } from '../models/Userdata.js';
 import { Postdata } from '../models/Postdata.js';
 import { Usertype } from '../models/Usertype.js';
-import { Authtoken } from '../models/Authtoken.ts';
+import { Authtoken } from '../models/Authtoken.js';
 import { dbConfig } from '../config.js';
 
 export const AppDataSource = new DataSource({
