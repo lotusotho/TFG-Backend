@@ -14,7 +14,7 @@ export default async function (server: any) {
 
   server.use(
     cors({
-      origin: 'https://blog.mapach.es',
+      origin: true,
       credentials: true,
       methods: 'POST,GET,PUT,OPTIONS,DELETE',
     })
@@ -23,10 +23,10 @@ export default async function (server: any) {
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
 
-  await connectDatabase();
-
   server.use(logDate);
   server.use(router);
+
+  await connectDatabase();
 
   server.use('*', (req: Request, res: any) => {
     res.status(404).send('Not Found');
