@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
 import { logDate } from '../middlewares/logger-middleware.js';
+import config from '../config.js';
 
 export default async function (server: any) {
   const allowedOrigins = ['https://blog.mapach.es'];
@@ -38,4 +39,8 @@ export default async function (server: any) {
   });
 
   server.use(errorHandler);
+
+  server.listen(config.port, () => {
+    console.log(`Server listening on port: ${config.port}`);
+  });
 }
