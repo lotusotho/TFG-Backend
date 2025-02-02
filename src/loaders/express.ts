@@ -13,8 +13,7 @@ export default async function (server: any) {
   server.use(
     cors({
       origin: 'https://blog.mapach.es',
-      credentials: true,
-      exposedHeaders: ['set-cookie'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
     })
   );
 
