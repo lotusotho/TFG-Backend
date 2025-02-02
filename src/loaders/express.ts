@@ -13,8 +13,8 @@ export default async function (server: any) {
   server.use(
     cors({
       origin: (origin, callback) => {
-        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-          callback(null, true);
+        if (allowedOrigins.includes(origin as string)) {
+          callback(null, origin);
         } else {
           callback(new Error('Not allowed by CORS'));
         }
