@@ -10,9 +10,9 @@ import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
 
 export default async function (server: any) {
-  server.use(
-    server.use(cookieParser());
+ server.use(cookieParser());
 
+ server.use(
     cors({
       origin: 'https://blog.mapach.es',
       credentials: true,
