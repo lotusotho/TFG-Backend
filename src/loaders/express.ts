@@ -29,7 +29,6 @@ export default async function (server: any) {
   await connectDatabase();
 
   server.use('*', (req: Request, res: any) => {
-    res.setHeader('Access-Control-Allow-Origin', 'https://blog.mapach.es');
     res.status(404).send('Not Found');
   });
 
