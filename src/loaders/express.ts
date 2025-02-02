@@ -14,6 +14,7 @@ export default async function (server: any) {
     cors({
       origin: 'https://blog.mapach.es',
       credentials: true,
+      preflightContinue: true,
     })
   );
 
