@@ -11,14 +11,14 @@ import { connectDatabase } from '../services/createConnection';
 
 export default async function (server: any) {
   server.use(
+    server.use(cookieParser());
+
     cors({
       origin: 'https://blog.mapach.es',
       credentials: true,
       preflightContinue: true,
     })
   );
-
-  server.use(cookieParser());
 
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
