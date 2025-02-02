@@ -1,26 +1,19 @@
 import express from 'express';
+
+import { logDate } from '../middlewares/logger-middleware';
 import errorHandler from '../middlewares/error-handler';
 import router from '../routes/index';
+
+import config from '../config';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
-import { logDate } from '../middlewares/logger-middleware.js';
-import config from '../config.js';
 
 export default async function (server: any) {
-  const allowedOrigins = ['https://blog.mapach.es'];
-
   server.use(
     cors({
-      origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin as string)) {
-          callback(null, origin);
-        } else {
-          callback(new Error('Not allowed by CORS'));
-        }
-      },
+      origin: 'https://blog.mapach.es',
       credentials: true,
-      allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
     })
   );
 
