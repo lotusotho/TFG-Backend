@@ -54,17 +54,9 @@ export const loginController = async (
       expiresIn: jwtSecurity.expirationTime,
     } as jwt.SignOptions);
 
-    res.cookie('authToken', token, {
-      domain: 'blog.mapach.es',
-      path: '/',
-      httpOnly: false,
-      secure: false,
-      maxAge: 3600 * 1000, // 1 hora
-    });
-
     await saveToken(username, token);
-    console.log('The token is: ', await getToken(username));
-    return res.status(200).send({ message: 'Login successful' });
+    console.log('The token is: ', token);
+    return res.status(200).send({ authToken: token });
   } catch (error) {
     return next(error);
   }
