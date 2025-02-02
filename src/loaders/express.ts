@@ -10,23 +10,23 @@ import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
 
 export default async function (server: any) {
- server.use(cookieParser());
+  server.use(cookieParser());
 
- server.use(
+  server.use(
     cors({
-      origin: 'https://blog.mapach.es',
+      origin: true,
       credentials: true,
-      preflightContinue: true,
+      methods: 'POST,GET,PUT,OPTIONS,DELETE',
     })
   );
 
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));
 
+  await connectDatabase();
+
   server.use(logDate);
   server.use(router);
-
-  await connectDatabase();
 
   server.use('*', (req: Request, res: any) => {
     res.status(404).send('Not Found');
