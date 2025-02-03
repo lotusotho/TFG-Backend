@@ -12,7 +12,9 @@
     "dev": "pnpm nodemon -e ts  --exec \"pnpm run compileDev\"",
     "lint": "eslint .",
     "start:docker": "docker run -p 3000:3000 --env-file ./.env tfg-backend",
-    "start:docker-compose": "docker-compose --env-file ./.env -f docker/docker-compose.yml up"
+    "start:docker-compose": "docker-compose --env-file ./.env -f docker/docker-compose.yml up",
+    "typeorm:migration-gen": "npx typeorm migration:generate InitialMigration -d dist/services/data-source.js",
+    "typeorm:migration-run": "npx typeorm migration:run -d dist/services/data-source.js"
   },
   "keywords": [],
   "author": "",
