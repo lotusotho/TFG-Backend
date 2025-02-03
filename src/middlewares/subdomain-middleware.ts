@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { getUserBySubdomain } from '../services/methodsDB';
 
-const reservedSubdomains = ['blog', 'api'];
-
 export const subdomainMiddleware = async (
   req: any,
   res: Response,
@@ -10,10 +8,6 @@ export const subdomainMiddleware = async (
 ): Promise<any> => {
   const host = req.headers.host;
   const subdomain = host?.split('.')[0];
-
-  if (reservedSubdomains.includes(subdomain)) {
-    return next();
-  }
 
   try {
     const user = await getUserBySubdomain(subdomain);
