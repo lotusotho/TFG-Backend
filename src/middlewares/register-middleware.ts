@@ -21,11 +21,11 @@ export const registrationMiddleware = async (
         `https://api.cloudflare.com/client/v4/zones/${cloudflareSecurity.zone_id}/dns_records`,
         {
           comment: `Subdomain created for ${username}`,
-          content: '198.51.100.4',
+          content: 'cname.vercel-dns.com',
           name: `${username}.mapach.es`,
           proxied: true,
           ttl: 3600,
-          type: 'A',
+          type: 'CNAME',
         },
         {
           headers: {
