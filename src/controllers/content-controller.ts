@@ -32,3 +32,36 @@ export const getContentController = async (
     content,
   });
 };
+
+export const getContentControllerDomain = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const user = req.user;
+
+  if (!user) {
+    return res.status(401).send({ error: 'Unauthorized' });
+  }
+
+  const content = await getContent(user.ID);
+
+  res.status(200).send({
+    content,
+  });
+};
+
+export const userPageController = async (
+  req: any,
+  res: Response,
+  next: NextFunction
+) => {
+  if (req.user) {
+    const currentUser = req.user;
+    const content = await getContent(currentUser.ID);
+
+    res.status(200).send({ content });
+  } else {
+    res.status(404).send({ error: 'Contenido no encontrado' });
+  }
+};
