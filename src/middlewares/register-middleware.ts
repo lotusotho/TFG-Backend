@@ -1,6 +1,4 @@
-import axios from 'axios';
 import { Request, Response, NextFunction } from 'express';
-import { cloudflareSecurity, developmentValues } from '../config';
 
 export const registrationMiddleware = async (
   req: Request,

@@ -1,3 +1,9 @@
-export function middlewareController() {}
+import { NextFunction, Request, Response } from 'express';
 
-export function errorController() {}
+export const getIndexController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  res.status(200).send({ message: 'server functional' });
+};
