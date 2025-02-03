@@ -1,11 +1,4 @@
-import {
-  Entity,
-  Column,
-  ManyToOne,
-  JoinColumn,
-  PrimaryColumn,
-  OneToOne,
-} from 'typeorm';
+import { Entity, Column, JoinColumn, PrimaryColumn, OneToOne } from 'typeorm';
 import { Userdata } from './Userdata';
 
 @Entity({ name: 'authtoken' })

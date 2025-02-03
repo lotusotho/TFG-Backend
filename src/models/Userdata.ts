@@ -1,8 +1,14 @@
-import { Entity, Column, JoinColumn, PrimaryColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'userdata' })
 export class Userdata {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('increment')
   ID!: number;
 
   @Column({ type: 'varchar', length: 15 })
