@@ -9,6 +9,7 @@ export class Usertype {
   @Column({ type: 'varchar', length: 7 })
   name!: string;
 
+  @ManyToOne(() => Userdata, (user) => user.type)
   @JoinColumn({ name: 'ID' }) // Specify the foreign key column
   users!: Userdata[];
 }
