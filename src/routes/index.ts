@@ -11,6 +11,7 @@ import {
   postContentController,
 } from '../controllers/content-controller';
 import { logoutController } from '../controllers/logout-controller';
+import { UsernameController } from '../controllers/user-controller.js';
 
 const router = express.Router();
 
@@ -21,6 +22,7 @@ router.post('/submitcontent', tokenChecker, postContentController);
 router.get('/secure', tokenChecker, pingController);
 router.get('/apikey', apikeyChecker, pingController);
 router.get('/tokenusername', tokenChecker, tokenUsernameController);
+router.get('/username', UsernameController);
 router.get('/usercontent', getContentControllerToken);
 router.get('/userpage', getContentControllerQuery);
 router.get('/logout', logoutController);
