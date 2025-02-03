@@ -199,13 +199,11 @@ export async function getContent(userId: number) {
   }
 }
 
-export async function getUserBySubdomain(
-  subdomain: string
-): Promise<Userdata | null> {
+export async function getUserByName(name: string): Promise<Userdata | null> {
   const userRepository = AppDataSource.getRepository(Userdata);
   try {
     const user = await userRepository.findOne({
-      where: { username: subdomain },
+      where: { username: name },
     });
     return user;
   } catch (error) {
