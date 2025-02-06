@@ -1,4 +1,4 @@
-FROM node:20.17.0
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -12,8 +12,6 @@ RUN pnpm config set store-dir /app/.pnpm-store --global
 RUN pnpm install
 
 COPY . .
-
-RUN pnpm add -D typescript tsc-alias
 
 RUN pnpm run compile
 

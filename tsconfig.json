@@ -1,12 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "ES2022",
     "moduleResolution": "node",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
-    "sourceMap": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -15,7 +14,8 @@
   },
   "tsc-alias": {
     "resolveFullPaths": true,
-    "verbose": false
+    "resolveFullExtension": ".js",
+    "verbose": true
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

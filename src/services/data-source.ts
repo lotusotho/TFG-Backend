@@ -1,9 +1,9 @@
 import { DataSource } from 'typeorm';
+import { dbConfig } from '../config';
 import { Userdata } from '../models/Userdata';
 import { Postdata } from '../models/Postdata';
 import { Usertype } from '../models/Usertype';
 import { Authtoken } from '../models/Authtoken';
-import { dbConfig } from '../config';
 
 export const AppDataSource = new DataSource({
   type: 'postgres',

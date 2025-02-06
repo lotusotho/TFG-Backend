@@ -1,9 +1,14 @@
-import { Entity, Column, JoinColumn, OneToOne, PrimaryColumn } from 'typeorm';
-import { Usertype } from './Usertype';
+import {
+  Entity,
+  Column,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity({ name: 'userdata' })
 export class Userdata {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn('increment')
   ID!: number;
 
   @Column({ type: 'varchar', length: 15 })
@@ -21,10 +26,9 @@ export class Userdata {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date_creation!: Date;
 
-  @OneToOne(() => Usertype, (userType) => userType.ID, {
-    onDelete: 'RESTRICT',
-    onUpdate: 'CASCADE',
-  })
+  @OneToMany(() => Userdata, (userdata) => userdata.userType)
+  users!: Userdata[];
+
   @JoinColumn({ name: 'type' })
   userType!: number;
 }

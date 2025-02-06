@@ -7,9 +7,9 @@ import { HttpError } from '../classes/HttpError';
 
 export function tokenChecker(req: any, res: Response, next: NextFunction) {
   try {
-    if (!req.cookies.authToken) throw Error('Missing token');
+    if (!req.cookies['authToken']) throw Error('Missing token');
 
-    const token = req.cookies.authToken;
+    const token = req.cookies['authToken'];
 
     if (!token) {
       throw new HttpError('Token not provided', 401);

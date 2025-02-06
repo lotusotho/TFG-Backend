@@ -1,9 +1,9 @@
 import { AppDataSource } from './data-source';
-import { Authtoken } from '../models/Authtoken';
 import { HttpError } from '../classes/HttpError';
 import { Userdata } from '../models/Userdata';
 import { Postdata } from '../models/Postdata';
 import { Usertype } from '../models/Usertype';
+import { Authtoken } from '../models/Authtoken';
 
 export const loginQuery = async (
   username?: string,
@@ -199,13 +199,11 @@ export async function getContent(userId: number) {
   }
 }
 
-export async function getUserBySubdomain(
-  subdomain: string
-): Promise<Userdata | null> {
+export async function getUserByName(name: string): Promise<Userdata | null> {
   const userRepository = AppDataSource.getRepository(Userdata);
   try {
     const user = await userRepository.findOne({
-      where: { username: subdomain },
+      where: { username: name },
     });
     return user;
   } catch (error) {

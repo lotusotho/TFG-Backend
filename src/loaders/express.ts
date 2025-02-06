@@ -10,14 +10,15 @@ import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
 
 export default async function (server: any) {
+  server.use(cookieParser());
+
   server.use(
     cors({
-      origin: 'https://tfg-frontend.vercel.app',
+      origin: true,
       credentials: true,
+      methods: 'POST,GET,PUT,OPTIONS,DELETE',
     })
   );
-
-  server.use(cookieParser());
 
   server.use(express.json());
   server.use(express.urlencoded({ extended: true }));

@@ -1,5 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
-import { getContent, getUserByToken, postContent } from '../services/methodsDB';
+import {
+  getContent,
+  getUserByName,
+  getUserByToken,
+  postContent,
+} from '../services/methodsDB';
 
 export const postContentController = async (
   req: Request,
@@ -17,7 +22,7 @@ export const postContentController = async (
   });
 };
 
-export const getContentController = async (
+export const getContentControllerToken = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -27,6 +32,22 @@ export const getContentController = async (
   const currentUser = await getUserByToken(token);
 
   const content = await getContent(currentUser.ID);
+
+  res.status(200).send({
+    content,
+  });
+};
+
+export const getContentControllerQuery = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  const query = req.query.blog;
+
+  const currentUser = await getUserByName(query as string);
+
+  const content = await getContent(currentUser!.ID);
 
   res.status(200).send({
     content,
