@@ -24,7 +24,7 @@ services:
       - DB_DATABASE=${DB_DATABASE}
       - DB_SCHEMA=${DB_SCHEMA}
     ports:
-      - '3000:3000'
+      - '443:3000'
     depends_on:
       - database
     env_file:
