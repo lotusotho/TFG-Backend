@@ -35,7 +35,7 @@ export default async function (server: any) {
   //   res.status(404).send('Not Found');
   // });
 
-  server.use(errorHandler);
+  // server.use(errorHandler);
 
   server.listen(config.port, () => {
     console.log(`Server listening on port: ${config.port}`);
