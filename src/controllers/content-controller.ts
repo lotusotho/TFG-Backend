@@ -15,7 +15,11 @@ export const postContentController = async (
 
   const currentUser = await getUserByToken(token as string);
 
-  await postContent(currentUser.ID, req.body.text_content, req.body.md_content);
+  await postContent(
+    currentUser!.ID,
+    req.body.text_content,
+    req.body.md_content
+  );
 
   res.status(201).send({
     message: 'The content has been posted.',
@@ -31,7 +35,7 @@ export const getContentControllerToken = async (
 
   const currentUser = await getUserByToken(token as string);
 
-  const content = await getContent(currentUser.ID);
+  const content = await getContent(currentUser!.ID);
 
   res.status(200).send({
     content,
