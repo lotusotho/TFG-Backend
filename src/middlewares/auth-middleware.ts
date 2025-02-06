@@ -3,23 +3,23 @@ import jwt from 'jsonwebtoken';
 import { security, jwtSecurity } from '../config';
 
 import { Request, Response, NextFunction } from 'express';
-import { HttpError } from '../classes/HttpError';
 
 export function tokenChecker(req: any, res: Response, next: NextFunction) {
   try {
-    if (!req.body['authToken']) console.log('Missing token');
+    if (!req.body['authToken']) {
+      return res.status(401).json({ error: 'Missing token' });
+    }
 
     const token = req.body['authToken'];
 
     if (!token) {
-      console.log('Token not provided', 401);
+      return res.status(401).json({ error: 'Token not provided' });
     }
 
     req.user = jwt.verify(token, jwtSecurity.secretKey as jwt.Secret);
     return next();
   } catch (error: any) {
-    error.status = 401;
-    console.log(error);
+    return res.status(401).json({ error: 'Invalid token' });
   }
 }
 
@@ -30,6 +30,5 @@ export function apikeyChecker(req: Request, res: Response, next: NextFunction) {
     return next();
   }
 
-  const error = new HttpError('You have no access', 401);
-  console.log(error);
+  return res.status(401).json({ error: 'You have no access' });
 }

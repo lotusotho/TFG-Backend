@@ -10,5 +10,5 @@ export const tokenUsernameController = async (
 
   const user = await getUserByToken(token as string);
 
-  return res.status(200).send({ username: user.username });
+  return res.status(200).send({ username: user?.username });
 };
