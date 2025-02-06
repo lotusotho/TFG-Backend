@@ -5,13 +5,10 @@ import errorHandler from '../middlewares/error-handler';
 import router from '../routes/index';
 
 import config from '../config';
-import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
 
 export default async function (server: any) {
-  server.use(cookieParser());
-
   server.use(
     cors({
       origin: 'https://blog.mapach.es',

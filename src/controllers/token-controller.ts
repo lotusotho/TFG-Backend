@@ -6,9 +6,9 @@ export const tokenUsernameController = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const token = req.cookies.authToken;
+  const token = req.headers.authorization;
 
-  const user = await getUserByToken(token);
+  const user = await getUserByToken(token as string);
 
   return res.status(200).send({ username: user.username });
 };

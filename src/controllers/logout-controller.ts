@@ -7,8 +7,8 @@ export const logoutController = async (
   next: NextFunction
 ): Promise<any> => {
   try {
-    const authToken = req.cookies.authToken;
-    await deleteToken(authToken);
+    const authToken = req.headers.authorization;
+    await deleteToken(authToken as string);
 
     return res
       .status(200)

@@ -11,9 +11,9 @@ export const postContentController = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const token = req.cookies.authToken;
+  const token = req.headers.authorization;
 
-  const currentUser = await getUserByToken(token);
+  const currentUser = await getUserByToken(token as string);
 
   await postContent(currentUser.ID, req.body.text_content, req.body.md_content);
 
@@ -27,9 +27,9 @@ export const getContentControllerToken = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const token = req.cookies.authToken;
+  const token = req.headers.authorization;
 
-  const currentUser = await getUserByToken(token);
+  const currentUser = await getUserByToken(token as string);
 
   const content = await getContent(currentUser.ID);
 
