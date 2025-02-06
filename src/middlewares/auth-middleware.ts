@@ -7,19 +7,19 @@ import { HttpError } from '../classes/HttpError';
 
 export function tokenChecker(req: any, res: Response, next: NextFunction) {
   try {
-    if (!req.body['authToken']) throw Error('Missing token');
+    if (!req.body['authToken']) console.log('Missing token');
 
     const token = req.body['authToken'];
 
     if (!token) {
-      throw new HttpError('Token not provided', 401);
+      console.log('Token not provided', 401);
     }
 
     req.user = jwt.verify(token, jwtSecurity.secretKey as jwt.Secret);
     return next();
   } catch (error: any) {
     error.status = 401;
-    throw error;
+    console.log(error);
   }
 }
 
@@ -31,5 +31,5 @@ export function apikeyChecker(req: Request, res: Response, next: NextFunction) {
   }
 
   const error = new HttpError('You have no access', 401);
-  throw error;
+  console.log(error);
 }

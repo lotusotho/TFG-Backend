@@ -16,7 +16,8 @@ export const loginQuery = async (
     });
     return user;
   } catch (error) {
-    throw error;
+    console.error('Error in loginQuery:', error);
+    return null;
   }
 };
 
@@ -28,38 +29,36 @@ export async function createUser(
 ) {
   try {
     const userRepository = AppDataSource.getRepository(Userdata);
-    const userTypeRepository = AppDataSource.getRepository(Usertype); // Repositorio para UserType
+    const userTypeRepository = AppDataSource.getRepository(Usertype);
 
-    // Verifica si el tipo de usuario existe
     const userType = await userTypeRepository.findOne({
       where: { ID: Number(newType) },
     });
     if (!userType) {
-      throw new Error('User type does not exist');
+      console.error('User type does not exist');
+      return null;
     }
 
-    // Verifica si el usuario ya existe
     const existingUser = await userRepository.findOne({
       where: [{ username: newUsername }, { email: newEmail }],
     });
-
     if (existingUser) {
-      throw new Error('User already exists');
+      console.error('User already exists');
+      return null;
     }
 
-    // Crea el nuevo usuario
     const newUser = userRepository.create({
       username: newUsername,
       email: newEmail,
       password: newPass,
-      type: newType, // Asegúrate de asignar el tipo de usuario existente
+      type: newType,
     });
     await userRepository.save(newUser);
 
     return newUser;
   } catch (error) {
     console.error('Error during user creation:', error);
-    throw new Error('Error during user creation');
+    return null;
   }
 }
 
@@ -73,7 +72,8 @@ export async function getToken(username: string) {
     });
 
     if (!getUser) {
-      throw new HttpError('User not found', 404);
+      console.error('User not found');
+      return null;
     }
 
     const getToken = await tokenRepository.findOne({
@@ -81,12 +81,14 @@ export async function getToken(username: string) {
     });
 
     if (!getToken) {
-      throw new HttpError('Token missing', 500);
+      console.error('Token missing');
+      return null;
     }
 
     return getToken;
   } catch (error) {
-    throw error;
+    console.error('Error in getToken:', error);
+    return null;
   }
 }
 
@@ -100,7 +102,8 @@ export async function saveToken(username: number, token: string) {
     });
 
     if (!getUser) {
-      throw new HttpError('User not found', 404);
+      console.error('User not found');
+      return null;
     }
 
     const getToken = await tokenRepository.findOne({
@@ -108,7 +111,8 @@ export async function saveToken(username: number, token: string) {
     });
 
     if (getToken) {
-      throw new HttpError('Token already exists', 500);
+      console.error('Token already exists');
+      return null;
     }
 
     const newToken: Authtoken = tokenRepository.create({
@@ -119,7 +123,8 @@ export async function saveToken(username: number, token: string) {
 
     return newToken;
   } catch (error) {
-    throw error;
+    console.error('Error in saveToken:', error);
+    return null;
   }
 }
 
@@ -132,14 +137,15 @@ export async function deleteToken(token: string) {
     });
 
     if (!getToken) {
-      throw new HttpError('Token doesnt exists', 500);
+      console.error("Token doesn't exist");
+      return null;
     }
 
-    await tokenRepository.delete(getToken!);
-
+    await tokenRepository.delete(getToken);
     return 'Token has been deleted';
   } catch (error) {
-    throw error;
+    console.error('Error in deleteToken:', error);
+    return null;
   }
 }
 
@@ -152,12 +158,14 @@ export async function getUserByToken(token: string) {
     });
 
     if (!getToken) {
-      throw new HttpError('Token does not exists', 500);
+      console.error('Token does not exist');
+      return null;
     }
 
     return getToken.user;
   } catch (error) {
-    throw error;
+    console.error('Error in getUserByToken:', error);
+    return null;
   }
 }
 
@@ -177,12 +185,12 @@ export async function postContent(
       text_content: json_c,
       md_content: markdown_c,
     });
-
     await postRepository.save(newPost);
 
     return getPost;
   } catch (error) {
-    throw error;
+    console.error('Error in postContent:', error);
+    return null;
   }
 }
 
@@ -192,10 +200,10 @@ export async function getContent(userId: number) {
     const getPost = await postRepository.findOne({
       where: { ID: Number(userId) },
     });
-
     return getPost;
   } catch (error) {
-    throw error;
+    console.error('Error in getContent:', error);
+    return null;
   }
 }
 
@@ -207,6 +215,7 @@ export async function getUserByName(name: string): Promise<Userdata | null> {
     });
     return user;
   } catch (error) {
-    throw error;
+    console.error('Error in getUserByName:', error);
+    return null;
   }
 }

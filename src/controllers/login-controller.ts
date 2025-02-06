@@ -47,12 +47,17 @@ export const loginController = async (
     const secretKey = jwtSecurity.secretKey;
 
     if (!secretKey) {
-      throw new Error('Secret key is not defined');
+      console.log('Secret key is not defined');
+      return next(new HttpError('Internal Server Error', 500));
     }
 
-    const token = jwt.sign(data, secretKey, {
-      expiresIn: jwtSecurity.expirationTime,
-    } as jwt.SignOptions);
+    const token = jwt.sign(
+      data,
+      secretKey as string,
+      {
+        expiresIn: jwtSecurity.expirationTime,
+      } as jwt.SignOptions
+    );
 
     await saveToken(username, token);
     console.log('The token is: ', token);
