@@ -14,7 +14,7 @@ export default async function (server: any) {
 
   server.use(
     cors({
-      origin: true,
+      origin: 'server.mapach.es',
       credentials: true,
       methods: 'POST,GET,PUT,OPTIONS,DELETE',
     })
