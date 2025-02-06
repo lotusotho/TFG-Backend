@@ -10,7 +10,9 @@
     "exe": "node dist/app.js",
     "dev": "nodemon -e ts  --exec \"pnpm run compileDev\"",
     "lint": "eslint .",
-    "start:docker": "docker-compose --env-file ./.env -f docker/docker-compose.yml up"
+    "start:docker": "docker-compose --env-file ./.env -f docker/docker-compose.yml up -d",
+    "typeorm:migration-gen": "npx typeorm migration:generate InitialMigration -d dist/services/data-source.js",
+    "typeorm:migration-run": "npx typeorm migration:run -d dist/services/data-source.js"
   },
   "keywords": [],
   "author": "",

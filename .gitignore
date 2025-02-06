@@ -131,3 +131,6 @@ dist
 
 # HTTP request tests
 rest.http
+
+# Dont include migrations
+migrations/
