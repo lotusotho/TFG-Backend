@@ -10,12 +10,13 @@ export async function tokenChecker(
   next: NextFunction
 ): Promise<void> {
   try {
-    if (!req.body['authToken']) {
-      res.status(401).json({ error: 'Missing token' });
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+      res.status(401).json({ error: 'Missing Authorization header' });
       return;
     }
 
-    const token = req.body['authToken'];
+    const token = authHeader.split(' ')[1];
 
     if (!token) {
       res.status(401).json({ error: 'Token not provided' });
