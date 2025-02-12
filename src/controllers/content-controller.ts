@@ -18,7 +18,10 @@ export const postContentController = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const token = req.headers.authorization;
+    const authHeader = req.headers.authorization as string;
+
+    const token = authHeader?.split(' ')[1];
+
     if (!token) {
       throw new HttpError('No authorization token provided', 401);
     }
