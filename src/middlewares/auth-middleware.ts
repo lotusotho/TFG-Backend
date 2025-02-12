@@ -1,8 +1,8 @@
 import * as bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { security, jwtSecurity } from '../config';
+import { jwtSecurity } from '../config';
 
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 
 export async function tokenChecker(
   req: any,
@@ -10,7 +10,7 @@ export async function tokenChecker(
   next: NextFunction
 ): Promise<void> {
   try {
-    const authHeader = req.headers['authorization'];
+    const authHeader = req.headers['Authorization'];
     if (!authHeader) {
       res.status(401).json({ error: 'Missing Authorization header' });
       return;
