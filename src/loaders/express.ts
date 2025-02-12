@@ -14,6 +14,7 @@ export default async function (server: any) {
       origin: /https?:\/\/(.*\.)?mapach\.es$/,
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       allowedHeaders: 'Content-Type, Authorization',
+      credentials: true,
     })
   );
 
