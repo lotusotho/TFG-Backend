@@ -10,7 +10,7 @@ export async function tokenChecker(
   next: NextFunction
 ): Promise<void> {
   try {
-    const authHeader = req.headers['Authorization'];
+    const authHeader = req.headers['authorization'];
     if (!authHeader) {
       res.status(401).json({ error: 'Missing Authorization header' });
       return;
