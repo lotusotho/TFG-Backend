@@ -6,6 +6,7 @@ import {
   postContent,
 } from '../services/methodsDB';
 import { HttpError } from '../classes/HttpError';
+import { ChangeToken } from './auth-controller.js';
 
 interface ContentRequest {
   text_content: string;
@@ -18,9 +19,7 @@ export const postContentController = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const authHeader = req.headers.authorization as string;
-
-    const token = authHeader?.split(' ')[1];
+    const token = await ChangeToken(req, res, next);
 
     if (!token) {
       throw new HttpError('No authorization token provided', 401);
@@ -49,12 +48,7 @@ export const getContentControllerToken = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const authHeader = req.headers.authorization as string;
-    if (!authHeader) {
-      throw new HttpError('No authorization token provided', 401);
-    }
-
-    const token = authHeader.split(' ')[1];
+    const token = await ChangeToken(req, res, next);
 
     const currentUser = await getUserByToken(token);
     if (!currentUser) {

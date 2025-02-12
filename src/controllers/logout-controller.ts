@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { deleteToken } from '../services/methodsDB';
+import { ChangeToken } from './auth-controller.js';
 
 export const logoutController = async (
   req: Request,
@@ -7,8 +8,7 @@ export const logoutController = async (
   next: NextFunction
 ): Promise<any> => {
   try {
-    const authHeader = req.headers.authorization;
-    const token = authHeader?.split(' ')[1];
+    const token = await ChangeToken(req, res, next);
 
     await deleteToken(token as string);
 

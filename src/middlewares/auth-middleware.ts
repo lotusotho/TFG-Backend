@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { security, jwtSecurity } from '../config';
 
 import { Request, Response, NextFunction } from 'express';
+import { ChangeToken } from '../controllers/auth-controller.js';
 
 export async function tokenChecker(
   req: any,
@@ -10,13 +11,7 @@ export async function tokenChecker(
   next: NextFunction
 ): Promise<void> {
   try {
-    const authHeader = req.headers.authorization;
-    if (!authHeader) {
-      res.status(401).json({ error: 'Missing token' });
-      return;
-    }
-
-    const token = authHeader.split(' ')[1];
+    const token = await ChangeToken(req, res, next);
 
     if (!token) {
       res.status(401).json({ error: 'Token not provided' });
