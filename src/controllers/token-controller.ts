@@ -6,7 +6,9 @@ export const tokenUsernameController = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const token = req.headers.authorization;
+  const authHeader = req.headers.authorization;
+
+  const token = authHeader?.split(' ')[1];
 
   const user = await getUserByToken(token as string);
 
