@@ -24,7 +24,7 @@ router.get('/', getIndexController);
 router.get('/secure', tokenChecker, pingController);
 router.get('/tokenusername', tokenChecker, tokenUsernameController);
 router.get('/username', UsernameController);
-router.get('/usercontent', getContentControllerToken);
+router.get('/usercontent', tokenChecker, getContentControllerToken);
 router.get('/userpage', getContentControllerQuery);
 router.get('/logout', logoutController);
 

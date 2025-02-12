@@ -1,8 +1,8 @@
 import * as bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { jwtSecurity } from '../config';
+import { security, jwtSecurity } from '../config';
 
-import { Response, NextFunction } from 'express';
+import { Request, Response, NextFunction } from 'express';
 
 export async function tokenChecker(
   req: any,
@@ -10,9 +10,9 @@ export async function tokenChecker(
   next: NextFunction
 ): Promise<void> {
   try {
-    const authHeader = req.headers['authorization'];
+    const authHeader = req.headers['authentication'];
     if (!authHeader) {
-      res.status(401).json({ error: 'Missing Authorization header' });
+      res.status(401).json({ error: 'Missing token' });
       return;
     }
 
@@ -30,15 +30,16 @@ export async function tokenChecker(
   }
 }
 
-// export async function apikeyChecker(
+// export function apikeyChecker(
 //   req: Request,
 //   res: Response,
 //   next: NextFunction
-// ): Promise<void> {
+// ): void {
 //   if (
 //     bcrypt.compareSync(req.headers.apikey as string, security.apiKey as string)
 //   ) {
-//     return next();
+//     next();
+//     return;
 //   }
 
 //   res.status(401).json({ error: 'You have no access' });

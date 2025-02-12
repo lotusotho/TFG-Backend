@@ -46,10 +46,12 @@ export const getContentControllerToken = async (
   next: NextFunction
 ): Promise<void> => {
   try {
-    const token = req.headers.authorization;
-    if (!token) {
+    const authHeader = req.headers['authentication'] as string;
+    if (!authHeader) {
       throw new HttpError('No authorization token provided', 401);
     }
+
+    const token = authHeader.split(' ')[1];
 
     const currentUser = await getUserByToken(token);
     if (!currentUser) {
