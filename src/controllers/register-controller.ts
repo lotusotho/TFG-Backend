@@ -18,7 +18,12 @@ export const registerController = async (
 
   try {
     const hashedPassword = await encryptPasswords(password);
-    await createUser(username, email, hashedPassword, type);
+    await createUser(
+      username.toLowerCase() as string,
+      email.toLowerCase() as string,
+      hashedPassword as string,
+      type
+    );
     res.status(201).send({ message: 'A new user has been created' });
   } catch (error) {
     next(error);
