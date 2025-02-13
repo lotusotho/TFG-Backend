@@ -1,5 +1,5 @@
-import nodemailer from 'nodemailer';
-import mailgunTransport from 'nodemailer-mailgun-transport';
+import formData from 'form-data';
+import Mailgun from 'mailgun.js';
 import { emailConfig } from '../config.js';
 import handlebars from 'handlebars';
 import fs from 'fs';
@@ -9,16 +9,11 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const mailgunOptions = {
-  auth: {
-    api_key: emailConfig.MAILGUN_API_KEY || '',
-    domain: emailConfig.MAILGUN_DOMAIN || '',
-  },
-};
-
-const transporter = nodemailer.createTransport(
-  mailgunTransport(mailgunOptions)
-);
+const mailgun = new Mailgun(formData);
+const mg = mailgun.client({
+  username: 'api',
+  key: emailConfig.MAILGUN_API_KEY || '',
+});
 
 const readHTMLFile = (filePath: string) => {
   return new Promise<string>((resolve, reject) => {
@@ -48,14 +43,12 @@ export const sendEmail = async (
   const template = handlebars.compile(html);
   const htmlToSend = template(templateData);
 
-  const mailOptions = {
+  await mg.messages.create(emailConfig.MAILGUN_DOMAIN || '', {
     from: emailConfig.MAILGUN_EMAIL,
     to,
     subject,
     html: htmlToSend,
-  };
-
-  await transporter.sendMail(mailOptions);
+  });
 };
 
 export const sendForgotPasswordEmail = async (
