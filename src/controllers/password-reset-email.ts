@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { generateToken, verifyToken } from '../utils/jwtUtils';
-import { sendEmail } from '../utils/emailSender';
+import { sendForgotPasswordEmail } from '../services/emailSender';
 import encryptPasswords from '../utils/bcryptEncryptor';
 import config from '../config.js';
 import { updateUserPassword } from '../services/methodsDB.js';
@@ -10,15 +10,11 @@ export const sendPasswordResetEmail = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { email } = req.body;
+  const { email, username } = req.body;
   const token = generateToken({ email });
   const resetLink = `${config.FRONTEND_URL}/reset-password?token=${token}`;
 
-  await sendEmail(
-    email,
-    'Password Reset',
-    `Click the link to reset your password: ${resetLink}`
-  );
+  await sendForgotPasswordEmail(email, username, resetLink);
   res.status(200).send({ message: 'Password reset email sent' });
 };
 

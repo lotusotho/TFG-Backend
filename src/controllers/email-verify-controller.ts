@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { generateToken, verifyToken } from '../utils/jwtUtils';
-import { sendEmail } from '../utils/emailSender';
+import { sendRegisterVerificationEmail } from '../services/emailSender';
 import config from '../config.js';
 import { getUserByEmail, verifyUserByEmail } from '../services/methodsDB.js';
 
@@ -9,16 +9,12 @@ export const sendVerificationEmail = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { email } = req.body;
+  const { email, username } = req.body;
   const token = generateToken({ email });
   const verificationLink = `${config.FRONTEND_URL}/verify-email?token=${token}`;
 
   try {
-    await sendEmail(
-      email,
-      'Email Verification',
-      `Click the link to verify your email: ${verificationLink}`
-    );
+    await sendRegisterVerificationEmail(email, username, verificationLink);
     res.status(200).send({ message: 'Verification email sent' });
   } catch (error) {
     next(error);

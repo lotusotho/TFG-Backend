@@ -36,8 +36,9 @@ export const dbConfig = {
 };
 
 export const emailConfig = {
-  EMAIL_USER: process.env.EMAIL_USER,
-  EMAIL_PASS: process.env.EMAIL_PASS,
+  MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
+  MAILGUN_DOMAIN: process.env.MAILGUN_DOMAIN,
+  MAILGUN_EMAIL: process.env.MAILGUN_EMAIL,
 };
 
 export default config;
