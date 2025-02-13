@@ -40,6 +40,7 @@ export const sendEmail = async (
 ) => {
   const templatePath = path.join(
     __dirname,
+    '..',
     'templates',
     `${templateName}.html`
   );
