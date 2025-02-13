@@ -7,7 +7,7 @@
   "scripts": {
     "compile": "tsc && tsc-alias",
     "compileDev": "tsc && tsc-alias && node dist/app.js",
-    "copy-templates": "mkdir -p dist/templates && copyfiles -u 1 'src/templates/**/*' dist/templates",
+    "copy-templates": "mkdir -p dist/templates && copyfiles -u 2 'src/templates/**/*' dist/templates",
     "build": "npm run compile && npm run copy-templates",
     "exe": "node dist/app.js",
     "dev": "nodemon -e ts  --exec \"pnpm run compileDev\"",
