@@ -13,6 +13,7 @@ const mailgun = new Mailgun(formData);
 const mg = mailgun.client({
   username: 'api',
   key: emailConfig.MAILGUN_API_KEY || '',
+  url: 'https://api.eu.mailgun.net',
 });
 
 const readHTMLFile = (filePath: string) => {
