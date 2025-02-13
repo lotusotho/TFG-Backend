@@ -13,7 +13,7 @@ RUN pnpm install
 
 COPY . .
 
-RUN pnpm run compile
+RUN pnpm run build
 
 EXPOSE 3000
 
