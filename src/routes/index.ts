@@ -24,13 +24,6 @@ import {
 
 const router = express.Router();
 
-router.post('/login', loginController);
-router.post('/register', registrationMiddleware, registerController);
-router.post('/submitcontent', tokenChecker, postContentController);
-router.post('/send-verification-email', sendVerificationEmail);
-router.post('/send-password-reset-email', sendPasswordResetEmail);
-router.post('/reset-password', resetPassword);
-
 router.get('/', getIndexController);
 router.get('/secure', tokenChecker, pingController);
 router.get('/tokenusername', tokenChecker, tokenUsernameController);
@@ -39,5 +32,12 @@ router.get('/usercontent', tokenChecker, getContentControllerToken);
 router.get('/userpage', getContentControllerQuery);
 router.get('/logout', logoutController);
 router.get('/verify-email', verifyEmail);
+
+router.post('/login', loginController);
+router.post('/register', registrationMiddleware, registerController);
+router.post('/submitcontent', tokenChecker, postContentController);
+router.post('/send-verification-email', sendVerificationEmail);
+router.post('/send-password-reset-email', sendPasswordResetEmail);
+router.post('/reset-password', resetPassword);
 
 export default router;
