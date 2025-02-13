@@ -1,6 +1,7 @@
 const config = {
   port: process.env.PORT,
   level: process.env.NODE_ENV === 'production' ? 'error' : 'info',
+  FRONTEND_URL: process.env.FRONTEND_URL,
 };
 
 export const security = {
@@ -32,6 +33,11 @@ export const dbConfig = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
   schema: process.env.DB_SCHEMA,
+};
+
+export const emailConfig = {
+  EMAIL_USER: process.env.EMAIL_USER,
+  EMAIL_PASS: process.env.EMAIL_PASS,
 };
 
 export default config;

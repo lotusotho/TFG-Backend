@@ -219,3 +219,60 @@ export async function getUserByName(name: string): Promise<Userdata | null> {
     return null;
   }
 }
+
+export async function getUserByEmail(email: string): Promise<Userdata | null> {
+  const userRepository = AppDataSource.getRepository(Userdata);
+  try {
+    const user = await userRepository.findOne({
+      where: { email },
+    });
+    return user;
+  } catch (error) {
+    console.error('Error in getUserByEmail:', error);
+    return null;
+  }
+}
+
+export async function verifyUserByEmail(email: string) {
+  const userRepository = AppDataSource.getRepository(Userdata);
+  try {
+    const user = await userRepository.findOne({
+      where: { email },
+    });
+
+    if (!user) {
+      console.error('User not found');
+      return null;
+    }
+
+    user.isVerified = true;
+    await userRepository.save(user);
+
+    return user;
+  } catch (error) {
+    console.error('Error in verifyUserByEmail:', error);
+    return null;
+  }
+}
+
+export async function updateUserPassword(email: string, newPassword: string) {
+  const userRepository = AppDataSource.getRepository(Userdata);
+  try {
+    const user = await userRepository.findOne({
+      where: { email },
+    });
+
+    if (!user) {
+      console.error('User not found');
+      return null;
+    }
+
+    user.password = newPassword;
+    await userRepository.save(user);
+
+    return user;
+  } catch (error) {
+    console.error('Error in updateUserPassword:', error);
+    return null;
+  }
+}

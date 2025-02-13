@@ -26,6 +26,9 @@ export class Userdata {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date_creation!: Date;
 
+  @Column({ type: 'boolean', default: false })
+  isVerified!: boolean;
+
   @OneToMany(() => Userdata, (userdata) => userdata.userType)
   users!: Userdata[];
 
