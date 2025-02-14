@@ -22,14 +22,25 @@ import {
   sendVerificationEmail,
   verifyEmail,
 } from '../controllers/email-verify-controller.js';
+import { verifyUserMiddleware } from '../middlewares/verify-middleware.js';
 
 const router = express.Router();
 
 router.get('/', getIndexController);
-router.get('/secure', tokenChecker, pingController);
-router.get('/tokenusername', tokenChecker, tokenUsernameController);
+// router.get('/secure', tokenChecker, pingController);
+router.get(
+  '/tokenusername',
+  verifyUserMiddleware,
+  tokenChecker,
+  tokenUsernameController
+);
 router.get('/username', UsernameController);
-router.get('/usercontent', tokenChecker, getContentControllerToken);
+router.get(
+  '/usercontent',
+  verifyUserMiddleware,
+  tokenChecker,
+  getContentControllerToken
+);
 router.get('/userpage', getContentControllerQuery);
 router.get('/logout', logoutController);
 router.get('/verify-email', verifyEmail);
@@ -37,7 +48,12 @@ router.get('/all-posts', getAllPostsController);
 
 router.post('/login', loginController);
 router.post('/register', registrationMiddleware, registerController);
-router.post('/submitcontent', tokenChecker, postContentController);
+router.post(
+  '/submitcontent',
+  verifyUserMiddleware,
+  tokenChecker,
+  postContentController
+);
 router.post('/send-verification-email', sendVerificationEmail);
 router.post('/send-password-reset-email', sendPasswordResetEmail);
 router.post('/reset-password', resetPassword);
