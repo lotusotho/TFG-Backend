@@ -276,3 +276,18 @@ export async function updateUserPassword(email: string, newPassword: string) {
     return null;
   }
 }
+
+export async function getAllPosts() {
+  const postRepository = AppDataSource.getRepository(Postdata);
+  try {
+    const posts = await postRepository
+      .createQueryBuilder('post')
+      .where('post.text_content IS NOT NULL')
+      .orWhere('post.md_content IS NOT NULL')
+      .getMany();
+    return posts;
+  } catch (error) {
+    console.error('Error in getAllPosts:', error);
+    return null;
+  }
+}

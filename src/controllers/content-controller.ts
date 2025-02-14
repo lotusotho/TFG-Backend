@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import {
+  getAllPosts,
   getContent,
   getUserByName,
   getUserByToken,
@@ -88,6 +89,23 @@ export const getContentControllerQuery = async (
     }
 
     res.status(200).json({ content });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAllPostsController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  try {
+    const postsData = await getAllPosts();
+    if (!postsData) {
+      throw new HttpError('Posts not found', 400);
+    }
+
+    res.status(200).send({ data: postsData });
   } catch (error) {
     next(error);
   }
