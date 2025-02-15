@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import {
   getAllPosts,
-  getContent,
+  getPostsByUser,
   getUserByName,
   getUserByToken,
   postContent,
@@ -46,64 +46,20 @@ export const postContentController = async (
   }
 };
 
-export const getContentControllerToken = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  try {
-    const token = await ChangeToken(req, res, next);
-
-    const currentUser = await getUserByToken(token);
-    if (!currentUser) {
-      throw new HttpError('User not found', 404);
-    }
-
-    const content = await getContent(currentUser.ID);
-    if (!content) {
-      throw new HttpError('Content not found', 404);
-    }
-
-    res.status(200).json({ content });
-  } catch (error) {
-    next(error);
-  }
-};
-
-export const getContentControllerQuery = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): Promise<void> => {
-  try {
-    const query = req.query.blog;
-    if (!query || typeof query !== 'string') {
-      throw new HttpError('Invalid blog query parameter', 400);
-    }
-
-    const currentUser = await getUserByName(query);
-    if (!currentUser) {
-      throw new HttpError('User not found', 404);
-    }
-
-    const content = await getContent(currentUser.ID);
-    if (!content) {
-      throw new HttpError('Content not found', 404);
-    }
-
-    res.status(200).json({ content });
-  } catch (error) {
-    next(error);
-  }
-};
-
 export const getAllPostsController = async (
   req: Request,
   res: Response,
   next: NextFunction
 ): Promise<any> => {
   try {
-    const postsData = await getAllPosts();
+    let postsData;
+    if (req.query.blog) {
+      const username = req.query.blog as string;
+      postsData = await getPostsByUser(username);
+    } else {
+      postsData = await getAllPosts();
+    }
+
     if (!postsData) {
       throw new HttpError('Posts not found', 400);
     }

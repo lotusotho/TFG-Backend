@@ -7,8 +7,6 @@ import { registrationMiddleware } from '../middlewares/register-middleware';
 import { tokenUsernameController } from '../controllers/token-controller';
 import {
   getAllPostsController,
-  getContentControllerQuery,
-  getContentControllerToken,
   postContentController,
 } from '../controllers/content-controller';
 import { logoutController } from '../controllers/logout-controller';
@@ -39,9 +37,8 @@ router.get(
   '/usercontent',
   verifyUserMiddleware,
   tokenChecker,
-  getContentControllerToken
+  getAllPostsController
 );
-router.get('/userpage', getContentControllerQuery);
 router.get('/logout', logoutController);
 router.get('/verify-email', verifyEmail);
 router.get('/all-posts', getAllPostsController);

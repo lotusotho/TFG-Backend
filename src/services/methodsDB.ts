@@ -194,19 +194,6 @@ export async function postContent(
   }
 }
 
-export async function getContent(userId: number) {
-  const postRepository = AppDataSource.getRepository(Postdata);
-  try {
-    const getPost = await postRepository.findOne({
-      where: { ID: Number(userId) },
-    });
-    return getPost;
-  } catch (error) {
-    console.error('Error in getContent:', error);
-    return null;
-  }
-}
-
 export async function getUserByName(name: string): Promise<Userdata | null> {
   const userRepository = AppDataSource.getRepository(Userdata);
   try {
@@ -290,6 +277,22 @@ export async function getAllPosts() {
     return posts;
   } catch (error) {
     console.error('Error in getAllPosts:', error);
+    return null;
+  }
+}
+
+export async function getPostsByUser(username: string) {
+  const postRepository = AppDataSource.getRepository(Postdata);
+  try {
+    const posts = await postRepository
+      .createQueryBuilder('post')
+      .leftJoin('post.user', 'user')
+      .select(['post', 'user.username'])
+      .where('user.username = :username', { username })
+      .getMany();
+    return posts;
+  } catch (error) {
+    console.error('Error in getPostsByUser:', error);
     return null;
   }
 }
