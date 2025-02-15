@@ -5,11 +5,11 @@ export async function ChangeToken(
   req: Request,
   res: Response,
   next: NextFunction
-) {
-  const authHearer = req.headers.authorization as string;
-  if (!authHearer) {
-    throw new HttpError('No authorization token provided', 401);
+): Promise<string | null> {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) {
+    res.status(401).json({ error: 'No authorization token provided' });
+    return null;
   }
-
-  return authHearer?.split(' ')[1];
+  return authHeader.split(' ')[1];
 }
