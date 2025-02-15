@@ -17,6 +17,7 @@ import {
   sendPasswordResetEmail,
 } from '../controllers/password-reset-email.js';
 import {
+  isUserVerifiedByTokenController,
   sendVerificationEmail,
   verifyEmail,
 } from '../controllers/email-verify-controller.js';
@@ -42,6 +43,7 @@ router.get(
 router.get('/logout', logoutController);
 router.get('/verify-email', verifyEmail);
 router.get('/all-posts', getAllPostsController);
+router.get('/isverified', tokenChecker, isUserVerifiedByTokenController);
 
 router.post('/login', loginController);
 router.post('/register', registrationMiddleware, registerController);

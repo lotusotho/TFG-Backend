@@ -5,7 +5,7 @@ export async function ChangeToken(
   req: Request,
   res: Response,
   next: NextFunction
-) {
+): Promise<any> {
   const authHearer = req.headers.authorization as string;
   if (!authHearer) {
     return null;

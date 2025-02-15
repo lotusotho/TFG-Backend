@@ -2,7 +2,12 @@ import { Request, Response, NextFunction } from 'express';
 import { generateToken, verifyToken } from '../utils/jwtUtils';
 import { sendRegisterVerificationEmail } from '../services/emailSender';
 import config from '../config.js';
-import { getUserByEmail, verifyUserByEmail } from '../services/methodsDB.js';
+import {
+  getUserByEmail,
+  getUserByToken,
+  verifyUserByEmail,
+} from '../services/methodsDB.js';
+import { ChangeToken } from './auth-controller.js';
 
 export const sendVerificationEmail = async (
   req: Request,
@@ -45,5 +50,29 @@ export const verifyEmail = async (
     } else {
       next(error);
     }
+  }
+};
+
+export const isUserVerifiedByTokenController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<any> => {
+  try {
+    // Extract token from the Authorization header or query parameters
+    const token = await ChangeToken(req, res, next);
+
+    if (!token) {
+      return res.status(401).send({ error: 'Token not provided' });
+    }
+
+    const user = await getUserByToken(token);
+    if (user) {
+      return res.status(200).send({ verified: user.isVerified });
+    } else {
+      return res.status(404).send({ error: 'User not found' });
+    }
+  } catch (error) {
+    next(error);
   }
 };
