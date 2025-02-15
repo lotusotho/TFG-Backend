@@ -171,23 +171,23 @@ export async function getUserByToken(token: string) {
 
 export async function postContent(
   userId: number,
+  title: string,
+  emoji: string,
   json_c: string,
   markdown_c: string
 ) {
   const postRepository = AppDataSource.getRepository(Postdata);
   try {
-    const getPost = await postRepository.findOne({
-      where: { ID: Number(userId) },
-    });
-
     const newPost: Postdata = postRepository.create({
       ID: Number(userId),
+      title,
+      emoji,
       text_content: json_c,
       md_content: markdown_c,
     });
     await postRepository.save(newPost);
 
-    return getPost;
+    return newPost;
   } catch (error) {
     console.error('Error in postContent:', error);
     return null;
@@ -282,6 +282,8 @@ export async function getAllPosts() {
   try {
     const posts = await postRepository
       .createQueryBuilder('post')
+      .leftJoin('post.user', 'user')
+      .select(['post', 'user.username'])
       .where('post.text_content IS NOT NULL')
       .orWhere('post.md_content IS NOT NULL')
       .getMany();

@@ -6,6 +6,12 @@ export class Postdata {
   @PrimaryColumn()
   ID!: number;
 
+  @Column({ type: 'varchar', length: 255 })
+  title!: string;
+
+  @Column({ type: 'varchar', length: 10 })
+  emoji!: string;
+
   @Column({ type: 'json', nullable: true })
   text_content?: any;
 

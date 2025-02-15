@@ -10,6 +10,8 @@ import { HttpError } from '../classes/HttpError';
 import { ChangeToken } from './auth-controller.js';
 
 interface ContentRequest {
+  title: string;
+  emoji: string;
   text_content: string;
   md_content: string;
 }
@@ -31,12 +33,13 @@ export const postContentController = async (
       throw new HttpError('User not found', 404);
     }
 
-    const { text_content, md_content } = req.body as ContentRequest;
-    if (!text_content || !md_content) {
+    const { title, emoji, text_content, md_content } =
+      req.body as ContentRequest;
+    if (!title || !emoji || !text_content || !md_content) {
       throw new HttpError('Missing required content fields', 400);
     }
 
-    await postContent(currentUser.ID, text_content, md_content);
+    await postContent(currentUser.ID, title, emoji, text_content, md_content);
     res.status(201).json({ message: 'Content posted successfully' });
   } catch (error) {
     next(error);
