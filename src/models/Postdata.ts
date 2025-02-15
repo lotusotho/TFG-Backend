@@ -9,7 +9,7 @@ export class Postdata {
   @Column({ type: 'varchar', length: 255 })
   title!: string;
 
-  @Column({ type: 'varchar', length: 10 })
+  @Column({ type: 'text' })
   emoji!: string;
 
   @Column({ type: 'json', nullable: true })
