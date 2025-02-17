@@ -1,0 +1,151 @@
+openapi: 3.0.0
+info:
+  title: TFG Backend API
+  version: "1.0.0"
+  description: Documentación de la API del backend TFG (en español)
+servers:
+  - url: http://localhost:3000
+    description: Servidor de desarrollo
+paths:
+  /:
+    get:
+      summary: Página de inicio
+      description: Muestra la página principal de la API.
+      responses:
+        '200':
+          description: Respuesta exitosa.
+  /tokenusername:
+    get:
+      summary: Obtener nombre de usuario a partir del token
+      description: Recupera el nombre de usuario utilizando el token de autenticación.
+      responses:
+        '200':
+          description: Nombre de usuario obtenido correctamente.
+  /username:
+    get:
+      summary: Obtener nombre de usuario
+      description: Recupera el nombre de usuario basado en los datos existentes.
+      responses:
+        '200':
+          description: Nombre de usuario obtenido.
+  /usercontent:
+    get:
+      summary: Obtener contenidos del usuario
+      description: Recupera contenidos específicos del usuario.
+      responses:
+        '200':
+          description: Contenidos recuperados satisfactoriamente.
+  /logout:
+    get:
+      summary: Cerrar sesión
+      description: Cierra la sesión del usuario.
+      responses:
+        '200':
+          description: Sesión cerrada exitosamente.
+  /verify-email:
+    get:
+      summary: Verificación de email
+      description: Verifica la dirección de correo electrónico del usuario.
+      responses:
+        '200':
+          description: Email verificado exitosamente.
+  /all-posts:
+    get:
+      summary: Recuperar todos los contenidos
+      description: Recupera todos los contenidos publicados.
+      responses:
+        '200':
+          description: Contenidos recuperados exitosamente.
+  /isverified:
+    get:
+      summary: Verificar autenticación
+      description: Valida que el usuario esté autenticado y verificado.
+      responses:
+        '200':
+          description: Autenticación y verificación exitosa.
+  /login:
+    post:
+      summary: Inicio de sesión
+      description: Permite a un usuario autenticarse con email y contraseña.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Inicio de sesión exitoso.
+  /register:
+    post:
+      summary: Registro de usuario
+      description: Registra un nuevo usuario en el sistema.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: Usuario registrado exitosamente.
+  /submitcontent:
+    post:
+      summary: Enviar contenido
+      description: Permite a un usuario autenticado enviar contenido.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+      responses:
+        '200':
+          description: Contenido enviado exitosamente.
+  /send-verification-email:
+    post:
+      summary: Enviar email de verificación
+      description: Envía un correo para verificar la cuenta del usuario.
+      responses:
+        '200':
+          description: Email de verificación enviado.
+  /send-password-reset-email:
+    post:
+      summary: Enviar email de restablecimiento de contraseña
+      description: Envía un correo para restablecer la contraseña del usuario.
+      responses:
+        '200':
+          description: Email de restablecimiento enviado.
+  /reset-password:
+    post:
+      summary: Restablecer contraseña
+      description: Permite al usuario restablecer su contraseña utilizando un token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                newPassword:
+                  type: string
+      responses:
+        '200':
+          description: Contraseña restablecida exitosamente.
