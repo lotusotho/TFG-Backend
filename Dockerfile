@@ -15,8 +15,8 @@ COPY . .
 
 RUN pnpm run build
 
-USER node
-
 EXPOSE 3000
+
+USER 1000
 
 CMD ["node", "dist/app.js"]
