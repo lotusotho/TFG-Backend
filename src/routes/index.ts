@@ -42,7 +42,7 @@ router.get(
 );
 router.get('/logout', logoutController);
 router.get('/verify-email', verifyEmail);
-router.get('/all-posts', getAllPostsController);
+router.get('/posts', getAllPostsController);
 router.get('/isverified', tokenChecker, isUserVerifiedByTokenController);
 
 router.post('/login', loginController);
