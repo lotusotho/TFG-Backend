@@ -13,9 +13,9 @@ RUN pnpm install
 
 COPY . .
 
-USER node
-
 RUN pnpm run build
+
+USER node
 
 EXPOSE 3000
 
