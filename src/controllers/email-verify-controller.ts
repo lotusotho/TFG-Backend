@@ -59,7 +59,6 @@ export const isUserVerifiedByTokenController = async (
   next: NextFunction
 ): Promise<any> => {
   try {
-    // Extract token from the Authorization header or query parameters
     const token = await ChangeToken(req, res, next);
 
     if (!token) {
