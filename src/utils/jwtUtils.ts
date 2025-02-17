@@ -1,6 +1,5 @@
 import jwt from 'jsonwebtoken';
 import { jwtSecurity } from '../config';
-import chalk from 'chalk';
 
 const tokenBlacklist: string[] = [];
 
@@ -19,10 +18,7 @@ export const verifyToken = (token: string) => {
     throw new Error('Token is blacklisted');
   }
   const validatedToken = jwt.verify(token, jwtSecurity.secretKey as string);
-  invalidateToken(
-    validatedToken as string,
-    chalk.bgGreenBright('email verification')
-  );
+  invalidateToken(validatedToken as string, 'email verification');
 
   return validatedToken;
 };
