@@ -6,8 +6,8 @@ import {
   getUserByToken,
   postContent,
 } from '../services/methodsDB';
-import { HttpError } from '../classes/HttpError';
 import { ChangeToken } from './auth-controller.js';
+import createHttpError from 'http-errors';
 
 interface ContentRequest {
   title: string;
@@ -25,18 +25,18 @@ export const postContentController = async (
     const token = await ChangeToken(req, res, next);
 
     if (!token) {
-      throw new HttpError('No authorization token provided', 401);
+      throw createHttpError(401, 'No authorization token provided');
     }
 
     const currentUser = await getUserByToken(token);
     if (!currentUser) {
-      throw new HttpError('User not found', 404);
+      throw createHttpError(404, 'User not found');
     }
 
     const { title, emoji, text_content, md_content } =
       req.body as ContentRequest;
     if (!title || !emoji || !text_content || !md_content) {
-      throw new HttpError('Missing required content fields', 400);
+      throw createHttpError(400, 'Missing required content fields');
     }
 
     await postContent(currentUser.ID, title, emoji, text_content, md_content);
@@ -61,7 +61,7 @@ export const getAllPostsController = async (
     }
 
     if (!postsData) {
-      throw new HttpError('Posts not found', 400);
+      throw createHttpError(400, 'Posts not found');
     }
 
     res.status(200).send({ data: postsData });

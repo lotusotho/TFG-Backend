@@ -1,5 +1,3 @@
-import { HttpError } from '../classes/HttpError';
-import { User } from '../interfaces/interfaces';
 import { createUser, loginQuery } from '../services/methodsDB';
 import encryptPasswords from '../utils/bcryptEncryptor';
 

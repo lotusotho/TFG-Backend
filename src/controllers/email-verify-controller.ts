@@ -47,6 +47,8 @@ export const verifyEmail = async (
       res.status(400).send({ error: 'Token expired' });
     } else if (error.name === 'JsonWebTokenError') {
       res.status(400).send({ error: 'Invalid token' });
+    } else if (error.status === 403) {
+      res.status(403).send({ error: error.message });
     } else {
       next(error);
     }

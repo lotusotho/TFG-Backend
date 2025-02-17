@@ -1,5 +1,4 @@
 import { AppDataSource } from './data-source';
-import { HttpError } from '../classes/HttpError';
 import { Userdata } from '../models/Userdata';
 import { Postdata } from '../models/Postdata';
 import { Usertype } from '../models/Usertype';

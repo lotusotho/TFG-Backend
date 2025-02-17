@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from 'express';
-import { HttpError } from '../classes/HttpError.js';
 
 export async function ChangeToken(
   req: Request,

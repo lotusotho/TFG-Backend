@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { jwtSecurity } from '../config';
-import { HttpError } from '../classes/HttpError';
+import createError from 'http-errors';
 import { UserJWT } from '../interfaces/interfaces';
 import { getToken, loginQuery, saveToken } from '../services/methodsDB';
 
@@ -14,7 +14,7 @@ export const loginController = async (
   const { username, password } = req.body;
 
   if (!username || !password) {
-    const error = new HttpError('Username and password are required', 400);
+    const error = createError(400, 'Username and password are required');
     return next(error);
   }
 
@@ -23,7 +23,7 @@ export const loginController = async (
     console.log('Database result:', result);
 
     if (!result || result.length === 0) {
-      const error = new HttpError('Invalid Credentials', 401);
+      const error = createError(401, 'Invalid Credentials');
       return next(error);
     }
 
@@ -33,7 +33,7 @@ export const loginController = async (
     console.log('Password valid:', isPasswordValid);
 
     if (!isPasswordValid) {
-      const error = new HttpError('Invalid Credentials', 401);
+      const error = createError(401, 'Invalid Credentials');
       return next(error);
     }
 
@@ -48,7 +48,7 @@ export const loginController = async (
 
     if (!secretKey) {
       console.log('Secret key is not defined');
-      return next(new HttpError('Internal Server Error', 500));
+      return next(createError(500, 'Internal Server Error'));
     }
 
     const token = jwt.sign(
