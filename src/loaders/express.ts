@@ -1,12 +1,11 @@
 import express from 'express';
-
 import { logDate } from '../middlewares/logger-middleware';
 import errorHandler from '../middlewares/error-handler';
 import router from '../routes/index';
-
 import config from '../config';
 import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
+import swaggerLoader from './swagger.js';
 
 export default async function (server: any) {
   server.use(
@@ -22,6 +21,9 @@ export default async function (server: any) {
   server.use(express.urlencoded({ extended: true }));
 
   server.use(logDate);
+
+  swaggerLoader(server);
+
   server.use(router);
 
   await connectDatabase();

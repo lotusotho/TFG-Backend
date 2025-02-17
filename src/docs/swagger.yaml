@@ -4,7 +4,7 @@ info:
   version: "1.0.0"
   description: Documentación de la API del backend TFG (en español)
 servers:
-  - url: http://localhost:3000
+  - url: https://blog.server.mapach.es
     description: Servidor de desarrollo
 paths:
   /:
