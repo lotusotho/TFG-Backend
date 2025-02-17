@@ -15,8 +15,10 @@ COPY . .
 
 RUN pnpm run build
 
-EXPOSE 3000
+RUN mkdir -p /app/logs && chown -R node:node /app
 
 USER 1000
+
+EXPOSE 3000
 
 CMD ["node", "dist/app.js"]
