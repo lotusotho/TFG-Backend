@@ -11,18 +11,23 @@ export const registerController = async (
   const { username, email, password, type } = req.body;
 
   if (!username || !email || !password || !type) {
-    res.status(400).send({ error: 'All fields are required.' });
+    return res.status(400).send({ error: 'All fields are required.' });
   }
 
   try {
     const hashedPassword = await encryptPasswords(password);
-    await createUser(
+    const newUser = await createUser(
       username.toLowerCase() as string,
       email.toLowerCase() as string,
       hashedPassword as string,
       type
     );
-    res.status(201).send({ message: 'A new user has been created' });
+
+    if (newUser === 500) {
+      return res.status(500).send({ error: 'User already exists' });
+    }
+
+    return res.status(201).send({ message: 'A new user has been created' });
   } catch (error) {
     next(error);
   }

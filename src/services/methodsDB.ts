@@ -43,7 +43,7 @@ export async function createUser(
     });
     if (existingUser) {
       console.error('User already exists');
-      return null;
+      return 500;
     }
 
     const newUser = userRepository.create({
