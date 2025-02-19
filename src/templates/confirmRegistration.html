@@ -2,12 +2,35 @@
 <html>
   <head>
     <title>Confirmar Registro</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        color: #333;
+        padding: 20px;
+      }
+      h1 {
+        color: #2c3e50;
+      }
+      p {
+        line-height: 1.6;
+      }
+      a {
+        color: #2980b9;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
   </head>
   <body>
     <h1>Bienvenido, {{name}}</h1>
     <p>
-      Gracias por registrarte. Por favor, confirma tu registro haciendo clic en
-      el siguiente enlace:
+      Gracias por registrarte. Ten en cuenta que si no verifica la cuenta en
+      menos de 1 día, esta se borrará. Por favor, confirma tu registro haciendo
+      clic en el siguiente enlace:
     </p>
     <a href="{{confirmationLink}}">Confirmar Registro</a>
   </body>

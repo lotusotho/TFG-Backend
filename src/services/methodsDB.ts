@@ -319,3 +319,23 @@ export async function deletePost(postId: number, userId: number) {
     return null;
   }
 }
+
+export async function deleteUnverifiedUsers() {
+  try {
+    const userRepository = AppDataSource.getRepository(Userdata);
+    const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+
+    const result = await userRepository
+      .createQueryBuilder()
+      .delete()
+      .from(Userdata)
+      .where('isVerified = :verified', { verified: false })
+      .andWhere('date_creation < :oneDayAgo', { oneDayAgo })
+      .execute();
+
+    return `${result.affected} unverified users deleted`;
+  } catch (error) {
+    console.error('Error in deleteUnverifiedUsers:', error);
+    return null;
+  }
+}
