@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import {
+  deletePost,
   getAllPosts,
   getPostsByUser,
   getUserByName,
@@ -65,6 +66,37 @@ export const getAllPostsController = async (
     }
 
     res.status(200).send({ data: postsData });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deletePostController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    const token = await ChangeToken(req, res, next);
+    if (!token) {
+      throw createHttpError(401, 'No authorization token provided');
+    }
+    const currentUser = await getUserByToken(token);
+    if (!currentUser) {
+      throw createHttpError(404, 'User not found');
+    }
+    const postId = Number(req.params.id);
+    if (isNaN(postId)) {
+      throw createHttpError(400, 'Invalid post id');
+    }
+    const result = await deletePost(postId, currentUser.ID);
+    if (!result) {
+      throw createHttpError(
+        400,
+        'Unable to delete post: you can only delete your own post'
+      );
+    }
+    res.status(200).json({ message: result });
   } catch (error) {
     next(error);
   }

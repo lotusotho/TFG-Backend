@@ -6,7 +6,6 @@ COPY package.json pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 
-# Set the global store directory to avoid conflicts
 RUN pnpm config set store-dir /app/.pnpm-store --global
 
 RUN pnpm install

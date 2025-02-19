@@ -6,6 +6,7 @@ import { registerController } from '../controllers/register-controller';
 import { registrationMiddleware } from '../middlewares/register-middleware';
 import { tokenUsernameController } from '../controllers/token-controller';
 import {
+  deletePostController,
   getAllPostsController,
   postContentController,
 } from '../controllers/content-controller';
@@ -56,5 +57,12 @@ router.post(
 router.post('/send-verification-email', sendVerificationEmail);
 router.post('/send-password-reset-email', sendPasswordResetEmail);
 router.post('/reset-password', resetPassword);
+
+router.delete(
+  '/post/:id',
+  verifyUserMiddleware,
+  tokenChecker,
+  deletePostController
+);
 
 export default router;

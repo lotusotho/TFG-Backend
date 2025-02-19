@@ -295,3 +295,27 @@ export async function getPostsByUser(username: string) {
     return null;
   }
 }
+
+export async function deletePost(postId: number, userId: number) {
+  try {
+    const postRepository = AppDataSource.getRepository(Postdata);
+    const post = await postRepository.findOne({
+      where: { ID: postId },
+      relations: ['user'],
+    });
+    if (!post) {
+      console.error('Post not found');
+      return null;
+    }
+
+    if (post.user.ID !== userId) {
+      console.error('User is not authorized to delete this post');
+      return null;
+    }
+    await postRepository.delete(postId);
+    return 'Post deleted successfully';
+  } catch (error) {
+    console.error('Error in deletePost:', error);
+    return null;
+  }
+}
