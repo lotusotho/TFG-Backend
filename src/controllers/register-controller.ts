@@ -7,7 +7,7 @@ export const registerController = async (
   req: Request,
   res: Response,
   next: NextFunction
-) => {
+): Promise<any> => {
   const { username, email, password, type } = req.body;
 
   if (!username || !email || !password || !type) {
