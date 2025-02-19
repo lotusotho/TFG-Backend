@@ -6,6 +6,14 @@ info:
 servers:
   - url: https://blog.server.mapach.es
     description: Servidor de desarrollo
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
 paths:
   /:
     get:
