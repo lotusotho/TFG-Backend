@@ -8,7 +8,7 @@ RUN npm install -g pnpm
 
 RUN pnpm config set store-dir /app/.pnpm-store --global
 
-RUN pnpm install --production
+RUN pnpm install
 
 COPY . .
 
