@@ -21,6 +21,9 @@ export class Postdata {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   date_creation!: Date;
 
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  date_updated!: Date;
+
   @ManyToOne(() => Userdata, (user) => user.ID, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
