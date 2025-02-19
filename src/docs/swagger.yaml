@@ -57,7 +57,7 @@ paths:
       responses:
         '200':
           description: Email verificado exitosamente.
-  /all-posts:
+  /posts:
     get:
       summary: Recuperar todos los contenidos
       description: Recupera todos los contenidos publicados.
