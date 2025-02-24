@@ -157,6 +157,26 @@ paths:
       responses:
         '200':
           description: Contraseña restablecida exitosamente.
+  /posts/{id}:
+    delete:
+      summary: Eliminar publicación
+      description: Elimina la publicación identificada por su ID, la cual debe pertenecer al usuario autenticado.
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID de la publicación a eliminar.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Publicación eliminada exitosamente.
+        '400':
+          description: Error al borrar la publicación.
+        '401':
+          description: No autorizado o token no proporcionado.
   /delete-user:
     delete:
       summary: Eliminar usuario
