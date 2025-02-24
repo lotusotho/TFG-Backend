@@ -41,7 +41,7 @@ export const deleteUserController = async (
     if (!user) {
       throw createError(404, 'User not found for provided token');
     }
-    const result = await deleteUser(user.ID);
+    const result = await deleteUser(user.username);
     if (!result) {
       throw createError(400, 'Failed to delete user');
     }

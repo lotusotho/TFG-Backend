@@ -320,11 +320,11 @@ export async function deletePost(postId: number, userId: number) {
   }
 }
 
-export async function deleteUser(userId: number) {
+export async function deleteUser(name: string) {
   try {
     const userRepository = AppDataSource.getRepository(Userdata);
     const user = await userRepository.findOne({
-      where: { ID: userId },
+      where: { username: name },
     });
 
     if (!user) {
@@ -332,7 +332,7 @@ export async function deleteUser(userId: number) {
       return null;
     }
 
-    await userRepository.delete(userId);
+    await userRepository.delete(name);
     return 'User deleted successfully';
   } catch (error) {
     console.error('Error in deleteUser:', error);
