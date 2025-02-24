@@ -332,7 +332,7 @@ export async function deleteUser(name: string) {
       return null;
     }
 
-    await userRepository.delete(name);
+    await userRepository.delete({ username: name });
     return 'User deleted successfully';
   } catch (error) {
     console.error('Error in deleteUser:', error);
