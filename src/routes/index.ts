@@ -11,7 +11,10 @@ import {
   postContentController,
 } from '../controllers/content-controller';
 import { logoutController } from '../controllers/logout-controller';
-import { UsernameController } from '../controllers/user-controller.js';
+import {
+  deleteUserController,
+  UsernameController,
+} from '../controllers/user-controller.js';
 import { getIndexController } from '../controllers/index.js';
 import {
   resetPassword,
@@ -63,6 +66,12 @@ router.delete(
   verifyUserMiddleware,
   tokenChecker,
   deletePostController
+);
+router.delete(
+  '/user',
+  verifyUserMiddleware,
+  tokenChecker,
+  deleteUserController
 );
 
 export default router;

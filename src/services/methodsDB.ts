@@ -320,6 +320,26 @@ export async function deletePost(postId: number, userId: number) {
   }
 }
 
+export async function deleteUser(userId: number) {
+  try {
+    const userRepository = AppDataSource.getRepository(Userdata);
+    const user = await userRepository.findOne({
+      where: { ID: userId },
+    });
+
+    if (!user) {
+      console.error('User not found');
+      return null;
+    }
+
+    await userRepository.delete(userId);
+    return 'User deleted successfully';
+  } catch (error) {
+    console.error('Error in deleteUser:', error);
+    return null;
+  }
+}
+
 export async function deleteUnverifiedUsers() {
   try {
     const userRepository = AppDataSource.getRepository(Userdata);
