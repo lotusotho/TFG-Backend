@@ -5,8 +5,8 @@ let authToken: string;
 
 beforeAll(async () => {
   const res = await request(baseUrl).post('/login').send({
-    username: 'alejandro',
-    password: 'hola12345',
+    username: 'testuser'.toLowerCase().trim(),
+    password: 'vDvq2l!CSzlzeeqo'.toLowerCase().trim(),
   });
   expect(res.status).toBe(200);
   authToken = res.body.token;
@@ -20,9 +20,9 @@ describe('TFG Backend API Endpoints', () => {
 
   it('POST /register should register a new user', async () => {
     const res = await request(baseUrl).post('/register').send({
-      username: 'UsuarioTest',
-      email: 'test@example.com',
-      password: 'secret',
+      username: 'UsuarioTest'.toLowerCase().trim(),
+      email: 'test@example.com'.toLowerCase().trim(),
+      password: 'secret123'.toLowerCase().trim(),
       type: 1,
     });
     expect(res.status).toBe(201);
@@ -30,8 +30,8 @@ describe('TFG Backend API Endpoints', () => {
 
   it('POST /login should authenticate a user', async () => {
     const res = await request(baseUrl).post('/login').send({
-      username: 'alejandro',
-      password: 'hola12345',
+      username: 'testuser'.toLowerCase().trim(),
+      password: 'vDvq2l!CSzlzeeqo'.toLowerCase().trim(),
     });
     expect(res.status).toBe(200);
   });
