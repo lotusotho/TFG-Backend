@@ -157,3 +157,16 @@ paths:
       responses:
         '200':
           description: Contraseña restablecida exitosamente.
+  /delete-user:
+    delete:
+      summary: Eliminar usuario
+      description: Elimina el usuario autenticado utilizando el token de autenticación.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Usuario eliminado exitosamente.
+        '400':
+          description: Error al eliminar el usuario.
+        '401':
+          description: No autorizado o token no proporcionado.
