@@ -1,6 +1,16 @@
 import request from 'supertest';
 
 const baseUrl = 'https://blog.server.mapach.es';
+let authToken: string;
+
+beforeAll(async () => {
+  const res = await request(baseUrl).post('/login').send({
+    username: 'alejandro',
+    password: 'hola12345',
+  });
+  expect(res.status).toBe(200);
+  authToken = res.body.token;
+});
 
 describe('TFG Backend API Endpoints', () => {
   it('GET / should respond with the main page', async () => {
@@ -29,30 +39,28 @@ describe('TFG Backend API Endpoints', () => {
   it('GET /tokenusername should return the username for a valid token', async () => {
     const res = await request(baseUrl)
       .get('/tokenusername')
-      .set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZWphbmRybyIsImVtYWlsIjoiYXJjLjJkb21pbmd1ZXpAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE5MTg0LCJleHAiOjE3NDA0MjI3ODR9.XULgZ8fn6bM7Hq2WATxZYTdLAkeFF3w_iBDLRCEfWjQ'
-      );
+      .set('Authorization', `Bearer ${authToken}`);
     expect(res.status).toBe(200);
   });
 
   it('GET /username should return the username', async () => {
-    const res = await request(baseUrl).get('/username');
+    const res = await request(baseUrl)
+      .get('/username')
+      .set('Authorization', `Bearer ${authToken}`);
     expect(res.status).toBe(200);
   });
 
   it('GET /usercontent should return user content', async () => {
     const res = await request(baseUrl)
       .get('/usercontent')
-      .set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZWphbmRybyIsImVtYWlsIjoiYXJjLjJkb21pbmd1ZXpAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE5MTg0LCJleHAiOjE3NDA0MjI3ODR9.XULgZ8fn6bM7Hq2WATxZYTdLAkeFF3w_iBDLRCEfWjQ'
-      );
+      .set('Authorization', `Bearer ${authToken}`);
     expect(res.status).toBe(200);
   });
 
   it('GET /logout should log the user out', async () => {
-    const res = await request(baseUrl).get('/logout');
+    const res = await request(baseUrl)
+      .get('/logout')
+      .set('Authorization', `Bearer ${authToken}`);
     expect(res.status).toBe(200);
   });
 
@@ -69,20 +77,14 @@ describe('TFG Backend API Endpoints', () => {
   it('GET /isverified should return verification status for a valid token', async () => {
     const res = await request(baseUrl)
       .get('/isverified')
-      .set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZWphbmRybyIsImVtYWlsIjoiYXJjLjJkb21pbmd1ZXpAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE5MTg0LCJleHAiOjE3NDA0MjI3ODR9.XULgZ8fn6bM7Hq2WATxZYTdLAkeFF3w_iBDLRCEfWjQ'
-      );
+      .set('Authorization', `Bearer ${authToken}`);
     expect(res.status).toBe(200);
   });
 
   it('POST /submitcontent should allow a user to submit content', async () => {
     const res = await request(baseUrl)
       .post('/submitcontent')
-      .set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZWphbmRybyIsImVtYWlsIjoiYXJjLjJkb21pbmd1ZXpAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE5MTg0LCJleHAiOjE3NDA0MjI3ODR9.XULgZ8fn6bM7Hq2WATxZYTdLAkeFF3w_iBDLRCEfWjQ'
-      )
+      .set('Authorization', `Bearer ${authToken}`)
       .send({
         title: 'Nuevo Contenido',
         emoji: '😊',
@@ -117,10 +119,7 @@ describe('TFG Backend API Endpoints', () => {
   it('DELETE /post/:id should delete the specified post', async () => {
     const res = await request(baseUrl)
       .delete('/post/1')
-      .set(
-        'Authorization',
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZWphbmRybyIsImVtYWlsIjoiYXJjLjJkb21pbmd1ZXpAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE5MTg0LCJleHAiOjE3NDA0MjI3ODR9.XULgZ8fn6bM7Hq2WATxZYTdLAkeFF3w_iBDLRCEfWjQ'
-      );
+      .set('Authorization', `Bearer ${authToken}`);
     expect(res.status).toBe(200);
   });
 });
