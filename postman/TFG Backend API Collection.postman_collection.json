@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "0b635c8e-9b18-4770-a5fe-0e9534171819",
+		"name": "TFG Backend API Collection",
+		"description": "Colección de Postman del proyecto TFG-Backend.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "39190558"
+	},
+	"item": [
+		{
+			"name": "GET /",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/",
+				"description": "Llama al controlador getIndexController para mostrar la página principal de la API."
+			},
+			"response": []
+		},
+		{
+			"name": "GET /tokenusername",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvdHVzb3RobyIsImVtYWlsIjoibG90dXNvdGhvMTFAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE3NzczLCJleHAiOjE3NDA0MjEzNzN9.bXsI5Hmy2d6LEgNdHdRLWGGUBt4a--ukWDvolJgNKrI"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/tokenusername",
+				"description": "Usa verifyUserMiddleware, tokenChecker y tokenUsernameController para recuperar el nombre de usuario a partir del token."
+			},
+			"response": []
+		},
+		{
+			"name": "GET /username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/username",
+				"description": "Llama al controlador UsernameController para obtener el nombre de usuario."
+			},
+			"response": []
+		},
+		{
+			"name": "GET /usercontent",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvdHVzb3RobyIsImVtYWlsIjoibG90dXNvdGhvMTFAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE3NzczLCJleHAiOjE3NDA0MjEzNzN9.bXsI5Hmy2d6LEgNdHdRLWGGUBt4a--ukWDvolJgNKrI"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/usercontent",
+				"description": "Rutas protegidas que utilizan verifyUserMiddleware y tokenChecker para recuperar contenidos del usuario (getAllPostsController)."
+			},
+			"response": []
+		},
+		{
+			"name": "GET /logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/logout",
+				"description": "Cierra la sesión del usuario mediante logoutController."
+			},
+			"response": []
+		},
+		{
+			"name": "GET /verify-email",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/verify-email",
+				"description": "Verifica el correo electrónico del usuario usando verifyEmail de email-verify-controller."
+			},
+			"response": []
+		},
+		{
+			"name": "GET /posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/posts",
+				"description": "Recupera todos los contenidos publicados usando getAllPostsController."
+			},
+			"response": []
+		},
+		{
+			"name": "GET /isverified",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvdHVzb3RobyIsImVtYWlsIjoibG90dXNvdGhvMTFAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE3NzczLCJleHAiOjE3NDA0MjEzNzN9.bXsI5Hmy2d6LEgNdHdRLWGGUBt4a--ukWDvolJgNKrI"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "{{baseUrl}}/isverified",
+				"description": "Verifica si el usuario está verificado utilizando tokenChecker y isUserVerifiedByTokenController."
+			},
+			"response": []
+		},
+		{
+			"name": "POST /login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"lotusotho\",\n  \"password\": \"password\"\n}"
+				},
+				"url": "{{baseUrl}}/login",
+				"description": "Realiza login a través de loginController. Se deben enviar email y password."
+			},
+			"response": []
+		},
+		{
+			"name": "POST /register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"username\": \"UsuarioTest\",\n  \"email\": \"test@example.com\",\n  \"password\": \"secret\",\n  \"type\": 1\n}"
+				},
+				"url": "{{baseUrl}}/register",
+				"description": "Registra un nuevo usuario usando registrationMiddleware y registerController. Todos los campos son requeridos y se valida el email."
+			},
+			"response": []
+		},
+		{
+			"name": "POST /submitcontent",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvdHVzb3RobyIsImVtYWlsIjoibG90dXNvdGhvMTFAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE3NzczLCJleHAiOjE3NDA0MjEzNzN9.bXsI5Hmy2d6LEgNdHdRLWGGUBt4a--ukWDvolJgNKrI"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"title\": \"Nuevo Contenido\",\n  \"emoji\": \"😊\",\n  \"text_content\": \"Contenido en texto\",\n  \"md_content\": \"Contenido en Markdown\"\n}"
+				},
+				"url": "{{baseUrl}}/submitcontent",
+				"description": "Permite al usuario autenticado enviar contenido usando verifyUserMiddleware, tokenChecker y postContentController."
+			},
+			"response": []
+		},
+		{
+			"name": "POST /send-verification-email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"user@example.com\"\n}"
+				},
+				"url": "{{baseUrl}}/send-verification-email",
+				"description": "Envía un email de verificación de registro mediante sendVerificationEmail."
+			},
+			"response": []
+		},
+		{
+			"name": "POST /send-password-reset-email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"user@example.com\"\n}"
+				},
+				"url": "{{baseUrl}}/send-password-reset-email",
+				"description": "Envía un email para restablecer la contraseña usando sendPasswordResetEmail."
+			},
+			"response": []
+		},
+		{
+			"name": "POST /reset-password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"token\": \"reset-token\",\n  \"newPassword\": \"newSecret123\"\n}"
+				},
+				"url": "{{baseUrl}}/reset-password",
+				"description": "Permite restablecer la contraseña usando resetPassword."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /post/:id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvdHVzb3RobyIsImVtYWlsIjoibG90dXNvdGhvMTFAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE3NzczLCJleHAiOjE3NDA0MjEzNzN9.bXsI5Hmy2d6LEgNdHdRLWGGUBt4a--ukWDvolJgNKrI"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/post/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"post",
+						"1"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Elimina un post específico del usuario autenticado usando verifyUserMiddleware, tokenChecker y deletePostController. Reemplaza '1' por el ID del post que se desea borrar."
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE /user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvdHVzb3RobyIsImVtYWlsIjoibG90dXNvdGhvMTFAZ21haWwuY29tIiwidHlwZSI6MSwiaWF0IjoxNzQwNDE3NzczLCJleHAiOjE3NDA0MjEzNzN9.bXsI5Hmy2d6LEgNdHdRLWGGUBt4a--ukWDvolJgNKrI"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{baseUrl}}/user"
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "authToken",
+			"value": ""
+		}
+	]
+}
