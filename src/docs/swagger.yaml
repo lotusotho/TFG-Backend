@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: TFG Backend API
   version: "1.0.0"
-  description: Documentación de la API del backend TFG (en español)
+  description: Documentación de la API del backend TFG
 servers:
   - url: https://blog.server.mapach.es
     description: Servidor de desarrollo
