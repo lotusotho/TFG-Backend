@@ -5,7 +5,7 @@ export const registrationMiddleware = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  const { username, email, password, type } = req.body;
+  const { email } = req.body;
 
   const regex = /^((?!\.)[\w\-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gm;
 

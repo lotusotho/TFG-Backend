@@ -3,7 +3,6 @@ import {
   deletePost,
   getAllPosts,
   getPostsByUser,
-  getUserByName,
   getUserByToken,
   postContent,
 } from '../services/methodsDB';

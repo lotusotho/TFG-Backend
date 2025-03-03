@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { jwtSecurity } from '../config';
 import createError from 'http-errors';
 import { UserJWT } from '../interfaces/interfaces';
-import { getToken, loginQuery, saveToken } from '../services/methodsDB';
+import { loginQuery, saveToken } from '../services/methodsDB';
 
 export const loginController = async (
   req: Request,

@@ -1,5 +1,4 @@
 import express from 'express';
-import { pingController } from '../controllers/ping-controller';
 import { loginController } from '../controllers/login-controller';
 import { tokenChecker } from '../middlewares/auth-middleware';
 import { registerController } from '../controllers/register-controller';

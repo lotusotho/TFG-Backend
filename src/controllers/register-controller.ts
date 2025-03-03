@@ -1,4 +1,4 @@
-import { createUser, loginQuery } from '../services/methodsDB';
+import { createUser } from '../services/methodsDB';
 import encryptPasswords from '../utils/bcryptEncryptor';
 
 import { Request, Response, NextFunction } from 'express';

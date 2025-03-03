@@ -1,8 +1,7 @@
-import * as bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { security, jwtSecurity } from '../config';
+import { jwtSecurity } from '../config';
 
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import { ChangeToken } from '../controllers/auth-controller.js';
 
 export async function tokenChecker(
@@ -20,6 +19,8 @@ export async function tokenChecker(
 
     req.user = jwt.verify(token, jwtSecurity.secretKey as jwt.Secret);
     next();
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error: any) {
     res.status(401).json({ error: 'Invalid token' });
   }
