@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 const swaggerDocument = YAML.load(path.join(__dirname, '../docs/swagger.yaml'));
 
 export default (app: Express): void => {
-  app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.get('/docs', (req, res, next) => {
+    res.json(swaggerDocument);
+  });
   console.log('Swagger docs available at http://localhost:3000/swagger');
 };

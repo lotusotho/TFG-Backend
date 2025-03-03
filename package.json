@@ -16,7 +16,8 @@
     "typeorm:migration-gen": "npx typeorm migration:generate InitialMigration -d dist/services/data-source.js",
     "typeorm:migration-run": "npx typeorm migration:run -d dist/services/data-source.js",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "test:report": "npx sonarqube-scanner"
   },
   "keywords": [],
   "author": "",
@@ -36,6 +37,7 @@
     "node-cron": "^3.0.3",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
+    "sonarqube-scanner": "4.2.8",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "typeorm": "^0.3.20",
