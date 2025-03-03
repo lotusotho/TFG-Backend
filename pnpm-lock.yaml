@@ -38,6 +38,9 @@ dependencies:
   mailgun.js:
     specifier: ^11.1.0
     version: 11.1.0
+  node-cron:
+    specifier: ^3.0.3
+    version: 3.0.3
   pg:
     specifier: ^8.13.1
     version: 8.13.3
@@ -85,6 +88,9 @@ devDependencies:
   '@types/node':
     specifier: ^22.10.2
     version: 22.13.4
+  '@types/node-cron':
+    specifier: ^3.0.11
+    version: 3.0.11
   '@types/supertest':
     specifier: ^6.0.2
     version: 6.0.2
@@ -1053,6 +1059,10 @@ packages:
 
   /@types/ms@2.1.0:
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
+    dev: true
+
+  /@types/node-cron@3.0.11:
+    resolution: {integrity: sha512-0ikrnug3/IyneSHqCBeslAhlK2aBfYek1fGo4bP4QnZPmiqSGRK+Oy7ZMisLWkesffJvQ1cqAcBnJC+8+nxIAg==}
     dev: true
 
   /@types/node@22.13.4:
@@ -3505,6 +3515,13 @@ packages:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
     dev: false
 
+  /node-cron@3.0.3:
+    resolution: {integrity: sha512-dOal67//nohNgYWb+nWmg5dkFdIwDm8EpeGYMekPMrngV3637lqnX0lbUcCtgibHTz6SEz7DAIjKvKDFYCnO1A==}
+    engines: {node: '>=6.0.0'}
+    dependencies:
+      uuid: 8.3.2
+    dev: false
+
   /node-int64@0.4.0:
     resolution: {integrity: sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==}
     dev: true
@@ -4637,6 +4654,11 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
+  /uuid@8.3.2:
+    resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
+    hasBin: true
+    dev: false
+
   /uuid@9.0.1:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
@@ -4826,6 +4848,7 @@ packages:
       http-errors: 2.0.0
       jsonwebtoken: 9.0.2
       mailgun.js: 11.1.0
+      node-cron: 3.0.3
       pg: 8.13.3
       reflect-metadata: 0.2.2
       swagger-jsdoc: 6.2.8(openapi-types@12.1.3)

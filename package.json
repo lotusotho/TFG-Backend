@@ -22,6 +22,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "TFG-Backend": "file:",
     "axios": "^1.7.9",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -32,11 +33,11 @@
     "http-errors": "^2.0.0",
     "jsonwebtoken": "^9.0.2",
     "mailgun.js": "^11.1.0",
+    "node-cron": "^3.0.3",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "TFG-Backend": "file:",
     "typeorm": "^0.3.20",
     "winston": "^3.17.0",
     "yamljs": "^0.3.0"
@@ -50,6 +51,7 @@
     "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.2",
+    "@types/node-cron": "^3.0.11",
     "@types/supertest": "^6.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.7",
