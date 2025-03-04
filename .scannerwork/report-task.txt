@@ -2,5 +2,5 @@ projectKey=TFG-Backend
 serverUrl=http://localhost:9000
 serverVersion=25.2.0.102705
 dashboardUrl=http://localhost:9000/dashboard?id=TFG-Backend
-ceTaskId=07cf75b2-7bd0-47e7-9c85-201b4366a76b
-ceTaskUrl=http://localhost:9000/api/ce/task?id=07cf75b2-7bd0-47e7-9c85-201b4366a76b
+ceTaskId=437af09f-8f28-4319-abf4-a5aec60e0cac
+ceTaskUrl=http://localhost:9000/api/ce/task?id=437af09f-8f28-4319-abf4-a5aec60e0cac
