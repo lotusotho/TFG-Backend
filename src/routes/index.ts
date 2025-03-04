@@ -29,7 +29,6 @@ import { verifyUserMiddleware } from '../middlewares/verify-middleware.js';
 const router = express.Router();
 
 router.get('/', getIndexController);
-// router.get('/secure', tokenChecker, pingController);
 router.get(
   '/tokenusername',
   verifyUserMiddleware,

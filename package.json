@@ -17,7 +17,7 @@
     "typeorm:migration-run": "npx typeorm migration:run -d dist/services/data-source.js",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test:report": "npx sonarqube-scanner"
+    "test:report": "npm test:coverage && npx sonarqube-scanner"
   },
   "keywords": [],
   "author": "",
