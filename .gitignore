@@ -134,3 +134,6 @@ rest.http
 
 # Dont include migrations
 migrations/
+
+# Dont include sonarqube stuff
+.scannerwork/
