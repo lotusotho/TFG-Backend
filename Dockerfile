@@ -12,8 +12,6 @@ RUN pnpm install
 
 COPY . .
 
-RUN pnpm run test:coverage
-
 RUN pnpm run build
 
 RUN mkdir -p /app/logs && chown -R node:node /app
@@ -22,4 +20,4 @@ USER 1000
 
 EXPOSE 3000
 
-CMD ["node", "dist/app.js"]
+CMD ["node", "dist/app.js", "npm test:coverage"]
