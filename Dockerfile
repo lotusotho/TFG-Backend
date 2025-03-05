@@ -20,4 +20,4 @@ USER 1000
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "node dist/app.js & sleep 10 && npm test:coverage"]
+CMD ["node", "dist/app.js", "npm run test:coverage"]
