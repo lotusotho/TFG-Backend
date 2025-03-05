@@ -1,6 +1,6 @@
 import request from 'supertest';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://blog.server.mapach.es';
 let authToken: string;
 
 beforeAll(async () => {
