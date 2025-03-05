@@ -6,6 +6,9 @@ import config from '../config';
 import cors from 'cors';
 import { connectDatabase } from '../services/createConnection';
 import swaggerLoader from './swagger.js';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import fs from 'fs';
 
 export default async function (server: any) {
   server.use(
@@ -25,6 +28,18 @@ export default async function (server: any) {
   swaggerLoader(server);
 
   server.use(router);
+
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+
+  const coveragePath = path.join(__dirname, '../../coverage/lcov-report');
+  if (fs.existsSync(coveragePath)) {
+    server.use('/coverage', express.static(coveragePath));
+  } else {
+    console.warn(
+      'La carpeta de coverage no existe, la ruta /coverage no se ha creado.'
+    );
+  }
 
   await connectDatabase();
 
