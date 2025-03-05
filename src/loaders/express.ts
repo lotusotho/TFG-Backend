@@ -28,10 +28,6 @@ export default async function (server: any) {
 
   await connectDatabase();
 
-  server.use('*', (req: Request, res: any, next: any) => {
-    res.status(404).send('Not Found');
-  });
-
   server.use(errorHandler);
 
   server.listen(config.port, () => {

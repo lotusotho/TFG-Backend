@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //! Procesos after deployment
-// Poner ruta /coverage después de 1.5 min
+// Poner ruta /coverage después de 1.5 min y añade ruta catch-all
 setTimeout(() => {
   const coveragePath = path.join(__dirname, '../../coverage/lcov-report');
   if (fs.existsSync(coveragePath)) {
@@ -25,6 +25,10 @@ setTimeout(() => {
       'La carpeta de coverage no existe, la ruta /coverage no se ha creado.'
     );
   }
+
+  app.use('*', (req: Request, res: any, next: any) => {
+    res.status(404).send('Not Found');
+  });
 }, 90000);
 
 // Borra usuarios sin verificar cada 5 minutos
