@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  blogapi:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      - PORT=${PORT}
+      - APIKEY=${APIKEY}
+      - NODE_ENV=${NODE_ENV}
+      - NODE_VERSION=${NODE_VERSION}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - EXPIRATION_TIME=${EXPIRATION_TIME}
+      - ACCOUNT_ID=${ACCOUNT_ID}
+      - CLOUDFLARE_EMAIL=${CLOUDFLARE_EMAIL}
+      - CLOUDFLARE_API_KEY=${CLOUDFLARE_API_KEY}
+      - CLOUDFLARE_ZONE_ID=${CLOUDFLARE_ZONE_ID}
+      - DEVELOPMENT=${DEVELOPMENT}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_SCHEMA=${DB_SCHEMA}
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
+    env_file:
+      - ../.env
+
+  database:
+    image: postgres:16
+    restart: always
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
