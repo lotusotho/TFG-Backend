@@ -16,5 +16,5 @@ export default (app: Express): void => {
   app.get('/docs', (req, res, next) => {
     res.json(swaggerDocument);
   });
-  console.log('Swagger docs available at http://localhost:3000/swagger');
+  console.log('Swagger docs available at http://localhost:3000/api-docs');
 };
