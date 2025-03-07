@@ -15,7 +15,6 @@
     "eslint": "eslint .",
     "lint:secret": "secretlint .",
     "start:docker": "docker-compose --env-file ./.env -f docker/docker-compose.yml up -d",
-    "start:docker-dev": "docker-compose --env-file ./.env -f docker/docker-compose.dev.yml up -d",
     "typeorm:migration-gen": "npx typeorm migration:generate InitialMigration -d dist/services/data-source.js",
     "typeorm:migration-run": "npx typeorm migration:run -d dist/services/data-source.js",
     "test": "jest",
