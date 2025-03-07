@@ -236,3 +236,9 @@ MAILGUN_API_KEY=your_mailgun_api_key
 MAILGUN_DOMAIN=your_mailgun_domain
 MAILGUN_EMAIL=your_mailgun_email
 ```
+
+## Despliegue Continuo con GitHub Actions
+
+Este proyecto utiliza GitHub Actions para automatizar el despliegue de la imagen Docker generada. Cada vez que se realiza un push a la rama principal, se ejecuta un workflow que realiza lo siguiente:
+- **Construcción de la imagen Docker:** Se construye mediante el Dockerfile del repositorio.
+- **Autenticación y Push:** Se autentica y se hace push a `ghcr.io` usando credenciales guardadas en GitHub Secrets.
