@@ -72,7 +72,7 @@ classDiagram
 - **Contenedorización**: Docker + Docker Compose
 - **Logging**: Winston
 - **Testing**: Jest + SuperTest
-- **Análisis de Código**: ESLint + SonarQube
+- **Análisis de Código**: ESLint + SecretLint + SonarQube
 
 ## Instalación de paquetes
 **Requisitos:**  
