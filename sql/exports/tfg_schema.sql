@@ -240,11 +240,11 @@ COPY tfg_schema.postdata ("ID", text_content, md_content, date_creation, title, 
 --
 
 COPY tfg_schema.userdata ("ID", username, email, password, type, date_creation, "isVerified") FROM stdin;
-1	lotusotho	lotusotho11@gmail.com	$2a$10$WUkPiGJRI8IuFxuI55Hai.jHbSVA/EZYdQDdSlytidYv72Du7ldvO	1	2025-02-15 19:58:05.287336	t
-2	scrmbl_egg	danielnaval02.contact@gmail.com	$2a$10$y5aVSfveJSocnJNj8QvP2es141rkUfYpOOHPypDy0dSBWtc93d60S	1	2025-02-15 21:58:11.12885	t
-3	mrluis12	mrluisminecraft12@gmail.com	$2a$10$t8vn.4GsepEbFOQtdelKledlZk03SEboNJhSCvd1RPCjvoBVN5fLu	1	2025-02-16 23:51:23.52934	t
-4	hiphonsito	carlitosnr2005@gmail.com	$2a$10$4hqAZtUgPvmgh8d9F75TpOXUAuRnmvSghYoWDA4SvGL.LDosOa9L.	1	2025-02-17 17:36:15.892963	t
-5	alejandro	arc.2dominguez@gmail.com	$2a$10$3QVbpTZ.xE3bw4zbNbcPIurkJnEYP/kDO1k9Jz9pSx44iNyEFQqhK	1	2025-02-19 12:45:27.913597	t
+1	lotusotho	example@example.example	$2a$10$WUkPiGJRI8IuFxuI55Hai.jHbSVA/EZYdQDdSlytidYv72Du7ldvO	1	2025-02-15 19:58:05.287336	t
+2	scrmbl_egg	example@example.example	$2a$10$y5aVSfveJSocnJNj8QvP2es141rkUfYpOOHPypDy0dSBWtc93d60S	1	2025-02-15 21:58:11.12885	t
+3	mrluis12	example@example.example	$2a$10$t8vn.4GsepEbFOQtdelKledlZk03SEboNJhSCvd1RPCjvoBVN5fLu	1	2025-02-16 23:51:23.52934	t
+4	hiphonsito	example@example.example	$2a$10$4hqAZtUgPvmgh8d9F75TpOXUAuRnmvSghYoWDA4SvGL.LDosOa9L.	1	2025-02-17 17:36:15.892963	t
+5	alejandro	example@example.example	$2a$10$3QVbpTZ.xE3bw4zbNbcPIurkJnEYP/kDO1k9Jz9pSx44iNyEFQqhK	1	2025-02-19 12:45:27.913597	t
 \.
 
 
