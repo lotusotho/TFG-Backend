@@ -2,6 +2,8 @@ version: '3.8'
 
 services:
   blogapi:
+    container_name: blog-backend
+    platform: linux/x86_64
     image: ghcr.io/lotusotho/tfg-backend:main
     environment:
       - PORT=${PORT}
@@ -29,14 +31,13 @@ services:
       - ../.env
 
   database:
+    container_name: blog-db
     image: postgres:16
     restart: always
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
-    ports:
-      - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
