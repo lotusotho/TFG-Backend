@@ -25,18 +25,3 @@ export async function tokenChecker(
     res.status(401).json({ error: 'Invalid token' });
   }
 }
-
-// export function apikeyChecker(
-//   req: Request,
-//   res: Response,
-//   next: NextFunction
-// ): void {
-//   if (
-//     bcrypt.compareSync(req.headers.apikey as string, security.apiKey as string)
-//   ) {
-//     next();
-//     return;
-//   }
-
-//   res.status(401).json({ error: 'You have no access' });
-// }
