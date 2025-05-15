@@ -9,6 +9,7 @@ export interface User {
 
 export interface UserJWT {
   username: string;
+  email: string;
   isverified: boolean;
   type: number;
 }
