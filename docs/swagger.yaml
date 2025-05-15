@@ -57,13 +57,6 @@ paths:
       responses:
         '200':
           description: Contenidos recuperados exitosamente.
-  /isverified:
-    get:
-      summary: Verificar autenticación
-      description: Valida que el usuario esté autenticado y verificado.
-      responses:
-        '200':
-          description: Autenticación y verificación exitosa.
   /login:
     post:
       summary: Inicio de sesión
