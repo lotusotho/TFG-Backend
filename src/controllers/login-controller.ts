@@ -40,6 +40,7 @@ export const loginController = async (
     const data: UserJWT = {
       id: result.id,
       username: result.username,
+      isverified: result.isVerified,
       type: result.type,
     };
 
