@@ -3,7 +3,6 @@ import { loginController } from '../controllers/login-controller';
 import { tokenChecker } from '../middlewares/auth-middleware';
 import { registerController } from '../controllers/register-controller';
 import { registrationMiddleware } from '../middlewares/register-middleware';
-import { tokenUsernameController } from '../controllers/token-controller';
 import {
   deletePostController,
   getAllPostsController,
@@ -29,12 +28,6 @@ import { verifyUserMiddleware } from '../middlewares/verify-middleware.js';
 const router = express.Router();
 
 router.get('/', getIndexController);
-router.get(
-  '/tokenusername',
-  verifyUserMiddleware,
-  tokenChecker,
-  tokenUsernameController
-);
 router.get('/username', UsernameController);
 router.get(
   '/usercontent',

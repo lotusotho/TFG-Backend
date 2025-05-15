@@ -10,6 +10,5 @@ export interface User {
 export interface UserJWT {
   id: number;
   username: string;
-  email: string;
   type: number;
 }

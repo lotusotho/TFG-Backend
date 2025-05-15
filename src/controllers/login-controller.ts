@@ -40,7 +40,6 @@ export const loginController = async (
     const data: UserJWT = {
       id: result.id,
       username: result.username,
-      email: result.email,
       type: result.type,
     };
 
