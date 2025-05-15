@@ -22,13 +22,6 @@ paths:
       responses:
         '200':
           description: Respuesta exitosa.
-  /tokenusername:
-    get:
-      summary: Obtener nombre de usuario a partir del token
-      description: Recupera el nombre de usuario utilizando el token de autenticación.
-      responses:
-        '200':
-          description: Nombre de usuario obtenido correctamente.
   /username:
     get:
       summary: Obtener nombre de usuario
