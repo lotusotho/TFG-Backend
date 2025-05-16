@@ -37,14 +37,14 @@ paths:
         '200':
           description: Contenidos recuperados satisfactoriamente.
   /logout:
-    get:
+    post:
       summary: Cerrar sesión
       description: Cierra la sesión del usuario.
       responses:
         '200':
           description: Sesión cerrada exitosamente.
   /verify-email:
-    get:
+    post:
       summary: Verificación de email
       description: Verifica la dirección de correo electrónico del usuario.
       responses:

@@ -35,8 +35,7 @@ router.get(
   tokenChecker,
   getAllPostsController
 );
-router.get('/logout', logoutController);
-router.get('/verify-email', verifyEmail);
+
 router.get('/posts', getAllPostsController);
 
 router.post('/login', loginController);
@@ -50,6 +49,8 @@ router.post(
 router.post('/send-verification-email', sendVerificationEmail);
 router.post('/send-password-reset-email', sendPasswordResetEmail);
 router.post('/reset-password', resetPassword);
+router.post('/logout', logoutController);
+router.post('/verify-email', verifyEmail);
 
 router.delete(
   '/post/:id',
