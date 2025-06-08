@@ -37,6 +37,7 @@ router.get(
 );
 
 router.get('/posts', getAllPostsController);
+router.get('/verify-email', verifyEmail);
 
 router.post('/login', loginController);
 router.post('/register', registrationMiddleware, registerController);
@@ -50,7 +51,6 @@ router.post('/send-verification-email', sendVerificationEmail);
 router.post('/send-password-reset-email', sendPasswordResetEmail);
 router.post('/reset-password', resetPassword);
 router.post('/logout', logoutController);
-router.post('/verify-email', verifyEmail);
 
 router.delete(
   '/post/:id',

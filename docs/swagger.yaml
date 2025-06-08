@@ -43,6 +43,13 @@ paths:
       responses:
         '200':
           description: Contenidos recuperados exitosamente.
+  /verify-email:
+    get:
+      summary: Verificación de email
+      description: Verifica la dirección de correo electrónico del usuario.
+      responses:
+        '200':
+          description: Email verificado exitosamente.
   /logout:
     post:
       summary: Cerrar sesión
@@ -50,13 +57,6 @@ paths:
       responses:
         '200':
           description: Sesión cerrada exitosamente.
-  /verify-email:
-    post:
-      summary: Verificación de email
-      description: Verifica la dirección de correo electrónico del usuario.
-      responses:
-        '200':
-          description: Email verificado exitosamente.
   /login:
     post:
       summary: Inicio de sesión
